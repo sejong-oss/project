@@ -9,7 +9,7 @@ import {
     DropdownMenuItem, DropdownMenuCheckboxItem,
     DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuSubContent,
     DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuDangerItem,
-} from "../components/index.js";
+} from "@/components/index.js";
 
 export default { title: "Design System/DropdownMenu" };
 

@@ -1,5 +1,5 @@
-import { ToasterProvider } from "../src/components/ToasterProvider.jsx";
-import "../src/assets/index.css";
+import { ToasterProvider } from "@/components/ToasterProvider.jsx";
+import "@/assets/index.css";
 
 export const decorators = [
     (Story) => (

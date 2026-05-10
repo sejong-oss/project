@@ -9,7 +9,7 @@ import {
     Tabs, TabsList, TabsTrigger, TabsContent,
     DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
     DropdownMenuItem, DropdownMenuSeparator, DropdownMenuDangerItem,
-} from "../components/index.js";
+} from "@/components/index.js";
 
 export default { title: "Design System/Overview" };
 

@@ -1,4 +1,4 @@
-import { RecipeCard, FeedCard } from "../components/index.js";
+import { RecipeCard, FeedCard } from "@/components/index.js";
 
 export default { title: "Design System/Cards" };
 

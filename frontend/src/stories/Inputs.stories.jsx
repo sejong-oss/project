@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Input, TagInput } from "../components/index.js";
+import { Input, TagInput } from "@/components/index.js";
 import { Search } from "@carbon/icons-react";
 
 export default { title: "Design System/Inputs" };

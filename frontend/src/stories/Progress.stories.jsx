@@ -1,4 +1,4 @@
-import { ProgressBar } from "../components/index.js";
+import { ProgressBar } from "@/components/index.js";
 
 export default { title: "Design System/Progress", component: ProgressBar };
 

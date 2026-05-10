@@ -1,4 +1,4 @@
-import { Avatar } from "../components/index.js";
+import { Avatar } from "@/components/index.js";
 
 export default { title: "Design System/Avatar", component: Avatar };
 

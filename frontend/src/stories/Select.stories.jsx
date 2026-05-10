@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Select, SelectItem, SelectGroup, SelectSeparator } from "../components/index.js";
+import { Select, SelectItem, SelectGroup, SelectSeparator } from "@/components/index.js";
 
 export default { title: "Design System/Select" };
 

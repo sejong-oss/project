@@ -1,5 +1,5 @@
 import { Favorite, Chat } from "@carbon/icons-react";
-import { Chip } from "./Chip.jsx";
+import { Chip } from "@/components/Chip.jsx";
 
 const cardVariants = {
     default: "bg-white border-gray-200",

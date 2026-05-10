@@ -1,4 +1,4 @@
-import { Button } from "../components/index.js";
+import { Button } from "@/components/index.js";
 
 export default { title: "Design System/Buttons", component: Button };
 

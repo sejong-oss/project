@@ -1,4 +1,4 @@
-import { TopNav, BottomTabBar } from "../components/index.js";
+import { TopNav, BottomTabBar } from "@/components/index.js";
 
 export default { title: "Design System/Nav" };
 

@@ -1,4 +1,4 @@
-import { EmptyState } from "../components/index.js";
+import { EmptyState } from "@/components/index.js";
 
 export default { title: "Design System/EmptyState", component: EmptyState };
 

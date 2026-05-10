@@ -1,4 +1,4 @@
-import { Skeleton, CardSkeleton, FeedSkeleton } from "../components/index.js";
+import { Skeleton, CardSkeleton, FeedSkeleton } from "@/components/index.js";
 
 export default { title: "Design System/Skeleton" };
 

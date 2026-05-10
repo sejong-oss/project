@@ -1,4 +1,4 @@
-import { Tabs, TabsList, TabsTrigger, TabsContent, RecipeCard, FeedCard } from "../components/index.js";
+import { Tabs, TabsList, TabsTrigger, TabsContent, RecipeCard, FeedCard } from "@/components/index.js";
 
 export default { title: "Design System/Tabs" };
 

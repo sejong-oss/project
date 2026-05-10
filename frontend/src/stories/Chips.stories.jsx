@@ -1,4 +1,4 @@
-import { Chip } from "../components/index.js";
+import { Chip } from "@/components/index.js";
 
 export default { title: "Design System/Chips", component: Chip };
 
