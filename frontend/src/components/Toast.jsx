@@ -1,8 +1,8 @@
 const variants = {
     default: "bg-gray-900 text-white",
     success: "bg-green-600 text-white",
-    error:   "bg-red-600 text-white",
-    info:    "bg-primary-500 text-white",
+    error: "bg-red-600 text-white",
+    info: "bg-primary-500 text-white",
 };
 
 export function Toast({ message, variant = "default", action, onAction, className = "" }) {
