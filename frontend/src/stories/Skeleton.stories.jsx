@@ -1,4 +1,4 @@
-import { Skeleton, RecipeCardSkeleton, FeedCardSkeleton } from "../components/index.js";
+import { Skeleton, CardSkeleton, FeedSkeleton } from "../components/index.js";
 
 export default { title: "Design System/Skeleton" };
 
@@ -10,16 +10,18 @@ export const Base = () => (
     </div>
 );
 
-export const RecipeCard = () => (
+export const CardSkeletonStory = () => (
     <div className="p-8 bg-white font-sans grid grid-cols-2 gap-4 max-w-lg">
-        <RecipeCardSkeleton variant="hero" />
-        <RecipeCardSkeleton />
+        <CardSkeleton variant="hero" />
+        <CardSkeleton />
     </div>
 );
+CardSkeletonStory.storyName = "Card";
 
-export const FeedCard = () => (
+export const FeedSkeletonStory = () => (
     <div className="p-8 bg-white font-sans flex flex-col gap-3 max-w-sm">
-        <FeedCardSkeleton />
-        <FeedCardSkeleton />
+        <FeedSkeleton />
+        <FeedSkeleton />
     </div>
 );
+FeedSkeletonStory.storyName = "Feed";

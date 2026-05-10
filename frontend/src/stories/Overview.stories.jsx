@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
     Button, Chip, Input, TagInput,
     RecipeCard, FeedCard,
-    Avatar, RecipeCardSkeleton, FeedCardSkeleton,
+    Avatar, CardSkeleton, FeedSkeleton,
     Toast, ProgressBar, TopNav, BottomTabBar, EmptyState,
 
 } from "../components/index.js";
@@ -197,11 +197,11 @@ export const DesignSystem = () => {
                 {/* Skeleton */}
                 <Section title="Skeleton">
                     <div className="grid grid-cols-3 gap-4">
-                        <RecipeCardSkeleton variant="hero" />
-                        <RecipeCardSkeleton />
+                        <CardSkeleton variant="hero" />
+                        <CardSkeleton />
                         <div className="flex flex-col gap-3">
-                            <FeedCardSkeleton />
-                            <FeedCardSkeleton />
+                            <FeedSkeleton />
+                            <FeedSkeleton />
                         </div>
                     </div>
                 </Section>

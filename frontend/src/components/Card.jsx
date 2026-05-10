@@ -1,10 +1,28 @@
-const heroStyle = "bg-primary-100 border-transparent";
-const defaultStyle = "bg-white border-gray-200";
-const mutedStyle = "bg-gray-50 border-transparent";
+const cardVariants = {
+    default: "bg-white border-gray-200",
+    hero:    "bg-primary-100 border-transparent",
+    muted:   "bg-gray-50 border-transparent",
+};
 
 const PhotoPlaceholder = ({ className = "" }) => (
     <div className={`bg-gradient-to-br from-primary-100 to-primary-200 rounded-lg ${className}`} />
 );
+
+export function Card({ children, variant = "default", onClick, className = "" }) {
+    return (
+        <div
+            onClick={onClick}
+            className={[
+                "p-4 border rounded-card flex flex-col gap-2.5",
+                cardVariants[variant],
+                onClick ? "cursor-pointer hover:opacity-90 transition-opacity" : "",
+                className,
+            ].join(" ")}
+        >
+            {children}
+        </div>
+    );
+}
 
 export function RecipeCard({
     title,
@@ -18,21 +36,12 @@ export function RecipeCard({
     onClick,
     className = "",
 }) {
-    const cardStyle = variant === "hero" ? heroStyle : variant === "muted" ? mutedStyle : defaultStyle;
     const labelColor = variant === "hero" ? "text-primary-600" : "text-primary-500";
-    const metaColor = variant === "hero" ? "text-primary-700" : "text-gray-400";
-    const ingColor = variant === "hero" ? "text-primary-700" : "text-gray-500";
+    const metaColor  = variant === "hero" ? "text-primary-700" : "text-gray-400";
+    const ingColor   = variant === "hero" ? "text-primary-700" : "text-gray-500";
 
     return (
-        <div
-            onClick={onClick}
-            className={[
-                "p-4 border rounded-[14px] flex flex-col gap-2.5",
-                cardStyle,
-                onClick ? "cursor-pointer hover:opacity-90 transition-opacity" : "",
-                className,
-            ].join(" ")}
-        >
+        <Card variant={variant} onClick={onClick} className={className}>
             {image
                 ? <img src={image} alt={title} className="w-full h-32 object-cover rounded-lg" />
                 : <PhotoPlaceholder className={variant === "hero" ? "h-40 from-primary-200 to-primary-300" : "h-32"} />
@@ -55,7 +64,7 @@ export function RecipeCard({
                     {servings && <span>{servings}</span>}
                 </div>
             )}
-        </div>
+        </Card>
     );
 }
 
@@ -64,7 +73,7 @@ export function FeedCard({ title, ingredients, tags = [], likes, comments, image
         <div
             onClick={onClick}
             className={[
-                "p-4 bg-white border border-gray-200 rounded-[14px] flex gap-3",
+                "p-4 bg-white border border-gray-200 rounded-card flex gap-3",
                 onClick ? "cursor-pointer hover:bg-gray-50 transition-colors" : "",
                 className,
             ].join(" ")}
