@@ -5,6 +5,7 @@ export { Card, RecipeCard, FeedCard } from "./Card.jsx";
 export { Avatar } from "./Avatar.jsx";
 export { Skeleton, CardSkeleton, FeedSkeleton } from "./Skeleton.jsx";
 export { Toast } from "./Toast.jsx";
+export { toast } from "./toast.js";
 export { ProgressBar } from "./ProgressBar.jsx";
 export { TopNav, BottomTabBar } from "./Nav.jsx";
 export { EmptyState } from "./EmptyState.jsx";

@@ -17,7 +17,7 @@ export function Toast({ message, variant = "default", action, onAction, classNam
                 <button
                     type="button"
                     onClick={onAction}
-                    className="text-xs font-semibold opacity-80 hover:opacity-100 underline underline-offset-2"
+                    className="ml-auto text-xs font-semibold opacity-75 hover:opacity-100 underline underline-offset-2"
                 >
                     {action}
                 </button>
