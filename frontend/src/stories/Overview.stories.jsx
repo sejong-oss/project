@@ -1,0 +1,233 @@
+import { useState } from "react";
+import {
+    Button, Chip, Input, TagInput,
+    RecipeCard, FeedCard,
+    Avatar, RecipeCardSkeleton, FeedCardSkeleton,
+    Toast, ProgressBar, TopNav, BottomTabBar, EmptyState,
+
+} from "../components/index.js";
+
+export default { title: "Design System/Overview" };
+
+const Section = ({ title, children }) => (
+    <section className="mb-12">
+        <h2 className="text-[10px] font-mono font-medium tracking-widest text-gray-400 uppercase mb-4 pb-2 border-b border-gray-200">
+            {title}
+        </h2>
+        {children}
+    </section>
+);
+
+const Swatch = ({ label, hex, className }) => (
+    <div className="flex flex-col gap-1.5">
+        <div className={`h-10 rounded-lg border border-gray-200 ${className}`} />
+        <span className="text-[10px] font-mono text-gray-600">{label}</span>
+        <span className="text-[10px] font-mono text-gray-400">{hex}</span>
+    </div>
+);
+
+export const DesignSystem = () => {
+    const [tags, setTags] = useState(["양파", "계란"]);
+
+    return (
+        <div className="min-h-screen bg-white font-sans">
+            <div className="max-w-5xl mx-auto px-8 py-12">
+                <div className="mb-12">
+                    <p className="text-xs font-mono text-gray-400 mb-1">design system · v1</p>
+                    <h1 className="text-3xl font-bold tracking-tight text-gray-900">컴포넌트 개요</h1>
+                </div>
+
+                {/* Colors */}
+                <Section title="Colors · Primary">
+                    <div className="grid grid-cols-10 gap-2">
+                        <Swatch label="50"  hex="#fef7f2" className="bg-primary-50" />
+                        <Swatch label="100" hex="#fceddf" className="bg-primary-100" />
+                        <Swatch label="200" hex="#f9d9be" className="bg-primary-200" />
+                        <Swatch label="300" hex="#f4b88a" className="bg-primary-300" />
+                        <Swatch label="400" hex="#ed8f56" className="bg-primary-400" />
+                        <Swatch label="500" hex="#e0682e" className="bg-primary-500" />
+                        <Swatch label="600" hex="#c7531d" className="bg-primary-600" />
+                        <Swatch label="700" hex="#a8400f" className="bg-primary-700" />
+                        <Swatch label="800" hex="#7a2e0f" className="bg-primary-800" />
+                        <Swatch label="900" hex="#5c1f08" className="bg-primary-900" />
+                    </div>
+                </Section>
+
+                <Section title="Colors · Gray">
+                    <div className="grid grid-cols-10 gap-2">
+                        <Swatch label="white" hex="#ffffff" className="bg-white" />
+                        <Swatch label="50"  hex="#fafaf9" className="bg-gray-50" />
+                        <Swatch label="100" hex="#f4f2ee" className="bg-gray-100" />
+                        <Swatch label="200" hex="#eae6dd" className="bg-gray-200" />
+                        <Swatch label="300" hex="#e9e5de" className="bg-gray-300" />
+                        <Swatch label="400" hex="#d4cebf" className="bg-gray-400" />
+                        <Swatch label="500" hex="#8c8170" className="bg-gray-500" />
+                        <Swatch label="600" hex="#5a5145" className="bg-gray-600" />
+                        <Swatch label="700" hex="#3d362b" className="bg-gray-700" />
+                        <Swatch label="800" hex="#2a2318" className="bg-gray-800" />
+                        <Swatch label="900" hex="#1f1a12" className="bg-gray-900" />
+                    </div>
+                </Section>
+
+                <Section title="Colors · Semantic">
+                    <div className="flex flex-wrap gap-2">
+                        {[
+                            { label: "red-100", cls: "bg-red-100" },
+                            { label: "red-500", cls: "bg-red-500" },
+                            { label: "red-600", cls: "bg-red-600" },
+                            { label: "green-100", cls: "bg-green-100" },
+                            { label: "green-600", cls: "bg-green-600" },
+                        ].map(({ label, cls }) => (
+                            <div key={label} className="flex flex-col gap-1.5">
+                                <div className={`w-12 h-10 rounded-lg border border-gray-200 ${cls}`} />
+                                <span className="text-[10px] font-mono text-gray-500">{label}</span>
+                            </div>
+                        ))}
+                    </div>
+                </Section>
+
+                {/* Typography */}
+                <Section title="Typography">
+                    <div className="flex flex-col gap-4">
+                        {[
+                            { cls: "text-4xl font-bold tracking-tight", text: "오늘은 뭐 해먹지?", label: "36/700" },
+                            { cls: "text-2xl font-semibold tracking-tight", text: "냉장고 재료 레시피 추천", label: "24/600" },
+                            { cls: "text-base text-gray-600", text: "가지고 있는 재료를 입력하면, AI가 가능한 요리 조합과 유튜브 영상까지 추천해드려요.", label: "16/400" },
+                            { cls: "text-sm text-gray-500", text: "이미 가입했나요? 로그인", label: "14/400" },
+                            { cls: "text-xs font-mono text-gray-400", text: "98% MATCH · 30분 · 쉬움", label: "mono" },
+                        ].map(({ cls, text, label }) => (
+                            <div key={label} className="flex items-baseline gap-6">
+                                <span className="text-[10px] font-mono text-gray-300 w-14 shrink-0">{label}</span>
+                                <span className={cls}>{text}</span>
+                            </div>
+                        ))}
+                    </div>
+                </Section>
+
+                {/* Buttons */}
+                <Section title="Buttons">
+                    <div className="flex flex-col gap-4">
+                        <div className="flex flex-wrap gap-2 items-center">
+                            <Button variant="primary">재료부터 시작하기 →</Button>
+                            <Button variant="ink">레시피 저장</Button>
+                            <Button variant="outline">로그인 / 가입</Button>
+                            <Button variant="ghost">취소</Button>
+                            <Button variant="danger">삭제</Button>
+                            <Button variant="danger-outline">공유 취소</Button>
+                        </div>
+                        <div className="flex gap-2 items-center">
+                            <Button variant="primary" size="sm">Small</Button>
+                            <Button variant="primary" size="md">Medium</Button>
+                            <Button variant="primary" size="lg">Large</Button>
+                            <Button variant="primary" disabled>Disabled</Button>
+                        </div>
+                    </div>
+                </Section>
+
+                {/* Chips */}
+                <Section title="Chips">
+                    <div className="flex flex-wrap gap-2">
+                        <Chip variant="brand">양파</Chip>
+                        <Chip variant="brand-soft" onRemove={() => {}}>계란</Chip>
+                        <Chip variant="neutral">두부</Chip>
+                        <Chip variant="outline">대파</Chip>
+                        <Chip variant="dashed">+ 재료 추가</Chip>
+                        <Chip variant="ink">간장</Chip>
+                        <Chip variant="success">완료</Chip>
+                        <Chip variant="error">오류</Chip>
+                    </div>
+                </Section>
+
+                {/* Inputs */}
+                <Section title="Inputs">
+                    <div className="grid grid-cols-2 gap-4 max-w-xl">
+                        <Input placeholder="재료를 입력하세요" icon={
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+                            </svg>
+                        } />
+                        <Input placeholder="오류 상태" error errorMessage="올바른 재료명을 입력해주세요." />
+                        <div className="col-span-2">
+                            <TagInput
+                                tags={tags}
+                                onAdd={(t) => setTags([...tags, t])}
+                                onRemove={(t) => setTags(tags.filter((x) => x !== t))}
+                                placeholder="재료를 입력하세요"
+                            />
+                        </div>
+                    </div>
+                </Section>
+
+                {/* Cards */}
+                <Section title="Cards">
+                    <div className="grid grid-cols-3 gap-4">
+                        <RecipeCard variant="hero" title="계란볶음밥" ingredients="계란 · 대파 · 간장" time="15분" difficulty="쉬움" />
+                        <RecipeCard title="두부 간장조림" match={98} ingredients="양파 · 두부 · 간장" time="20분" difficulty="쉬움" />
+                        <RecipeCard title="된장찌개" match={76} ingredients="두부 · 대파 · 된장" time="30분" difficulty="보통" />
+                    </div>
+                    <div className="mt-4 max-w-sm">
+                        <FeedCard title="직접 만든 두부 간장조림" ingredients="양파 · 두부 · 간장 · 참기름" tags={["한식", "쉬움"]} likes={24} comments={3} />
+                    </div>
+                </Section>
+
+                {/* Avatar & Progress & Toast */}
+                <Section title="Avatar / Progress / Toast">
+                    <div className="flex flex-col gap-6">
+                        <div className="flex items-center gap-3">
+                            <Avatar name="김" size="sm" />
+                            <Avatar name="김" size="md" badge={3} />
+                            <Avatar name="김" size="lg" />
+                            <div className="flex -space-x-2 ml-2">
+                                {["김", "이", "박"].map((n) => <Avatar key={n} name={n} size="md" />)}
+                            </div>
+                        </div>
+                        <div className="max-w-xs flex flex-col gap-3">
+                            <ProgressBar value={98} label="계란볶음밥" />
+                            <ProgressBar value={76} label="두부 간장조림" />
+                            <ProgressBar value={42} label="된장찌개" />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <Toast message="레시피가 저장됐어요." variant="success" />
+                            <Toast message="불러오지 못했어요." variant="error" action="다시 시도" />
+                            <Toast message="공유 링크가 복사됐어요." variant="info" />
+                        </div>
+                    </div>
+                </Section>
+
+                {/* Skeleton */}
+                <Section title="Skeleton">
+                    <div className="grid grid-cols-3 gap-4">
+                        <RecipeCardSkeleton variant="hero" />
+                        <RecipeCardSkeleton />
+                        <div className="flex flex-col gap-3">
+                            <FeedCardSkeleton />
+                            <FeedCardSkeleton />
+                        </div>
+                    </div>
+                </Section>
+
+                {/* Empty State */}
+                <Section title="Empty State">
+                    <div className="grid grid-cols-2 divide-x divide-y divide-gray-100 border border-gray-100 rounded-xl overflow-hidden">
+                        <EmptyState icon="🧅" title="재료를 입력해주세요" description="재료를 1개 이상 추가하면 AI가 레시피를 추천해드려요." action="재료 추가하기" />
+                        <EmptyState icon="🍳" title="추천 결과가 없어요" description="다른 재료 조합으로 다시 시도해보세요." action="재료 다시 입력" />
+                        <EmptyState icon="📋" title="공유된 레시피가 없어요" description="첫 번째 레시피를 공유해보세요!" action="레시피 공유하기" />
+                        <EmptyState icon="⭐" title="저장한 레시피가 없어요" description="마음에 드는 레시피에 하트를 눌러보세요." />
+                    </div>
+                </Section>
+
+                {/* Nav */}
+                <Section title="Navigation">
+                    <div className="flex flex-col gap-4">
+                        <div className="border border-gray-200 rounded-xl overflow-hidden">
+                            <TopNav active="home" user={{ name: "김" }} />
+                        </div>
+                        <div className="border border-gray-200 rounded-xl overflow-hidden max-w-xs">
+                            <BottomTabBar active="home" />
+                        </div>
+                    </div>
+                </Section>
+            </div>
+        </div>
+    );
+};
