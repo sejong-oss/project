@@ -130,20 +130,6 @@ export const DesignSystem = () => {
                     </div>
                 </Section>
 
-                {/* Chips */}
-                <Section title="Chips">
-                    <div className="flex flex-wrap gap-2">
-                        <Chip variant="brand">양파</Chip>
-                        <Chip variant="brand-soft" onRemove={() => {}}>계란</Chip>
-                        <Chip variant="neutral">두부</Chip>
-                        <Chip variant="outline">대파</Chip>
-                        <Chip variant="dashed">+ 재료 추가</Chip>
-                        <Chip variant="ink">간장</Chip>
-                        <Chip variant="success">완료</Chip>
-                        <Chip variant="error">오류</Chip>
-                    </div>
-                </Section>
-
                 {/* Inputs */}
                 <Section title="Inputs">
                     <div className="grid grid-cols-2 gap-4 max-w-xl">
@@ -158,6 +144,82 @@ export const DesignSystem = () => {
                             />
                         </div>
                     </div>
+                </Section>
+
+                {/* Select */}
+                <Section title="Select">
+                    <div className="flex flex-wrap gap-3 items-start">
+                        <Select value={difficulty} onValueChange={setDifficulty} placeholder="난이도">
+                            <SelectItem value="easy">쉬움</SelectItem>
+                            <SelectItem value="medium">보통</SelectItem>
+                            <SelectItem value="hard">어려움</SelectItem>
+                        </Select>
+                        <Select value={sort} onValueChange={setSort} placeholder="정렬">
+                            <SelectGroup label="인기">
+                                <SelectItem value="popular">인기순</SelectItem>
+                                <SelectItem value="trending">트렌딩</SelectItem>
+                            </SelectGroup>
+                            <SelectSeparator />
+                            <SelectGroup label="시간">
+                                <SelectItem value="newest">최신순</SelectItem>
+                                <SelectItem value="oldest">오래된순</SelectItem>
+                            </SelectGroup>
+                        </Select>
+                        <Select placeholder="비활성화" disabled>
+                            <SelectItem value="a">옵션</SelectItem>
+                        </Select>
+                    </div>
+                </Section>
+
+                {/* Chips */}
+                <Section title="Chips">
+                    <div className="flex flex-wrap gap-2">
+                        <Chip variant="brand">양파</Chip>
+                        <Chip variant="brand-soft" onRemove={() => {}}>계란</Chip>
+                        <Chip variant="neutral">두부</Chip>
+                        <Chip variant="outline">대파</Chip>
+                        <Chip variant="dashed">+ 재료 추가</Chip>
+                        <Chip variant="ink">간장</Chip>
+                        <Chip variant="success">완료</Chip>
+                        <Chip variant="error">오류</Chip>
+                    </div>
+                </Section>
+
+                {/* Nav */}
+                <Section title="Navigation">
+                    <div className="flex flex-col gap-4">
+                        <div className="border border-gray-200 rounded-xl overflow-hidden">
+                            <TopNav active="home" user={{ name: "김" }} />
+                        </div>
+                        <div className="border border-gray-200 rounded-xl overflow-hidden max-w-xs">
+                            <BottomTabBar active="home" />
+                        </div>
+                    </div>
+                </Section>
+
+                {/* Tabs */}
+                <Section title="Tabs">
+                    <Tabs defaultValue="recipe">
+                        <TabsList variant="line">
+                            <TabsTrigger value="recipe" variant="line">레시피</TabsTrigger>
+                            <TabsTrigger value="feed" variant="line">피드</TabsTrigger>
+                            <TabsTrigger value="saved" variant="line">저장됨</TabsTrigger>
+                        </TabsList>
+                        <TabsContent value="recipe">
+                            <div className="grid grid-cols-3 gap-4">
+                                <RecipeCard title="두부 간장조림" match={98} ingredients="양파 · 두부 · 간장" time="20분" difficulty="쉬움" />
+                                <RecipeCard title="된장찌개" match={76} ingredients="두부 · 대파 · 된장" time="30분" difficulty="보통" />
+                            </div>
+                        </TabsContent>
+                        <TabsContent value="feed">
+                            <div className="max-w-sm">
+                                <FeedCard title="직접 만든 두부 간장조림" ingredients="양파 · 두부 · 간장" tags={["한식", "쉬움"]} likes={24} comments={3} />
+                            </div>
+                        </TabsContent>
+                        <TabsContent value="saved">
+                            <p className="text-sm text-gray-500">저장한 레시피가 없어요.</p>
+                        </TabsContent>
+                    </Tabs>
                 </Section>
 
                 {/* Cards */}
@@ -196,78 +258,6 @@ export const DesignSystem = () => {
                     </div>
                 </Section>
 
-                {/* Skeleton */}
-                <Section title="Skeleton">
-                    <div className="grid grid-cols-3 gap-4">
-                        <CardSkeleton variant="hero" />
-                        <CardSkeleton />
-                        <div className="flex flex-col gap-3">
-                            <FeedSkeleton />
-                            <FeedSkeleton />
-                        </div>
-                    </div>
-                </Section>
-
-                {/* Empty State */}
-                <Section title="Empty State">
-                    <div className="grid grid-cols-2 divide-x divide-y divide-gray-100 border border-gray-100 rounded-xl overflow-hidden">
-                        <EmptyState icon="🧅" title="재료를 입력해주세요" description="재료를 1개 이상 추가하면 AI가 레시피를 추천해드려요." action="재료 추가하기" />
-                        <EmptyState icon="🍳" title="추천 결과가 없어요" description="다른 재료 조합으로 다시 시도해보세요." action="재료 다시 입력" />
-                        <EmptyState icon="📋" title="공유된 레시피가 없어요" description="첫 번째 레시피를 공유해보세요!" action="레시피 공유하기" />
-                        <EmptyState icon="⭐" title="저장한 레시피가 없어요" description="마음에 드는 레시피에 하트를 눌러보세요." />
-                    </div>
-                </Section>
-
-                {/* Select */}
-                <Section title="Select">
-                    <div className="flex flex-wrap gap-3 items-start">
-                        <Select value={difficulty} onValueChange={setDifficulty} placeholder="난이도">
-                            <SelectItem value="easy">쉬움</SelectItem>
-                            <SelectItem value="medium">보통</SelectItem>
-                            <SelectItem value="hard">어려움</SelectItem>
-                        </Select>
-                        <Select value={sort} onValueChange={setSort} placeholder="정렬">
-                            <SelectGroup label="인기">
-                                <SelectItem value="popular">인기순</SelectItem>
-                                <SelectItem value="trending">트렌딩</SelectItem>
-                            </SelectGroup>
-                            <SelectSeparator />
-                            <SelectGroup label="시간">
-                                <SelectItem value="newest">최신순</SelectItem>
-                                <SelectItem value="oldest">오래된순</SelectItem>
-                            </SelectGroup>
-                        </Select>
-                        <Select placeholder="비활성화" disabled>
-                            <SelectItem value="a">옵션</SelectItem>
-                        </Select>
-                    </div>
-                </Section>
-
-                {/* Tabs */}
-                <Section title="Tabs">
-                    <Tabs defaultValue="recipe">
-                        <TabsList variant="line">
-                            <TabsTrigger value="recipe" variant="line">레시피</TabsTrigger>
-                            <TabsTrigger value="feed" variant="line">피드</TabsTrigger>
-                            <TabsTrigger value="saved" variant="line">저장됨</TabsTrigger>
-                        </TabsList>
-                        <TabsContent value="recipe">
-                            <div className="grid grid-cols-3 gap-4">
-                                <RecipeCard title="두부 간장조림" match={98} ingredients="양파 · 두부 · 간장" time="20분" difficulty="쉬움" />
-                                <RecipeCard title="된장찌개" match={76} ingredients="두부 · 대파 · 된장" time="30분" difficulty="보통" />
-                            </div>
-                        </TabsContent>
-                        <TabsContent value="feed">
-                            <div className="max-w-sm">
-                                <FeedCard title="직접 만든 두부 간장조림" ingredients="양파 · 두부 · 간장" tags={["한식", "쉬움"]} likes={24} comments={3} />
-                            </div>
-                        </TabsContent>
-                        <TabsContent value="saved">
-                            <p className="text-sm text-gray-500">저장한 레시피가 없어요.</p>
-                        </TabsContent>
-                    </Tabs>
-                </Section>
-
                 {/* Dropdown Menu */}
                 <Section title="Dropdown Menu">
                     <div className="flex flex-wrap gap-3 items-start">
@@ -295,15 +285,25 @@ export const DesignSystem = () => {
                     </div>
                 </Section>
 
-                {/* Nav */}
-                <Section title="Navigation">
-                    <div className="flex flex-col gap-4">
-                        <div className="border border-gray-200 rounded-xl overflow-hidden">
-                            <TopNav active="home" user={{ name: "김" }} />
+                {/* Skeleton */}
+                <Section title="Skeleton">
+                    <div className="grid grid-cols-3 gap-4">
+                        <CardSkeleton variant="hero" />
+                        <CardSkeleton />
+                        <div className="flex flex-col gap-3">
+                            <FeedSkeleton />
+                            <FeedSkeleton />
                         </div>
-                        <div className="border border-gray-200 rounded-xl overflow-hidden max-w-xs">
-                            <BottomTabBar active="home" />
-                        </div>
+                    </div>
+                </Section>
+
+                {/* Empty State */}
+                <Section title="Empty State">
+                    <div className="grid grid-cols-2 divide-x divide-y divide-gray-100 border border-gray-100 rounded-xl overflow-hidden">
+                        <EmptyState icon="🧅" title="재료를 입력해주세요" description="재료를 1개 이상 추가하면 AI가 레시피를 추천해드려요." action="재료 추가하기" />
+                        <EmptyState icon="🍳" title="추천 결과가 없어요" description="다른 재료 조합으로 다시 시도해보세요." action="재료 다시 입력" />
+                        <EmptyState icon="📋" title="공유된 레시피가 없어요" description="첫 번째 레시피를 공유해보세요!" action="레시피 공유하기" />
+                        <EmptyState icon="⭐" title="저장한 레시피가 없어요" description="마음에 드는 레시피에 하트를 눌러보세요." />
                     </div>
                 </Section>
             </div>
