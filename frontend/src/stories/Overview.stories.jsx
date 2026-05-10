@@ -207,13 +207,13 @@ export const DesignSystem = () => {
                         </TabsList>
                         <TabsContent value="recipe">
                             <div className="grid grid-cols-3 gap-4">
-                                <RecipeCard title="두부 간장조림" match={98} ingredients="양파 · 두부 · 간장" time="20분" difficulty="쉬움" />
-                                <RecipeCard title="된장찌개" match={76} ingredients="두부 · 대파 · 된장" time="30분" difficulty="보통" />
+                                <RecipeCard title="두부 간장조림" match={98} time="20분" difficulty="쉬움" />
+                                <RecipeCard title="된장찌개" match={76} time="30분" difficulty="보통" />
                             </div>
                         </TabsContent>
                         <TabsContent value="feed">
                             <div className="max-w-sm">
-                                <FeedCard title="직접 만든 두부 간장조림" ingredients="양파 · 두부 · 간장" tags={["한식", "쉬움"]} likes={24} comments={3} />
+                                <FeedCard title="직접 만든 두부 간장조림" author="모카" tags={["한식", "쉬움"]} likes={24} comments={3} />
                             </div>
                         </TabsContent>
                         <TabsContent value="saved">
@@ -225,12 +225,12 @@ export const DesignSystem = () => {
                 {/* Cards */}
                 <Section title="Cards">
                     <div className="grid grid-cols-3 gap-4">
-                        <RecipeCard variant="hero" title="계란볶음밥" ingredients="계란 · 대파 · 간장" time="15분" difficulty="쉬움" />
-                        <RecipeCard title="두부 간장조림" match={98} ingredients="양파 · 두부 · 간장" time="20분" difficulty="쉬움" />
-                        <RecipeCard title="된장찌개" match={76} ingredients="두부 · 대파 · 된장" time="30분" difficulty="보통" />
+                        <RecipeCard variant="hero" title="계란볶음밥" time="15분" difficulty="쉬움" />
+                        <RecipeCard title="두부 간장조림" match={98} time="20분" difficulty="쉬움" />
+                        <RecipeCard title="된장찌개" match={76} time="30분" difficulty="보통" />
                     </div>
                     <div className="mt-4 max-w-sm">
-                        <FeedCard title="직접 만든 두부 간장조림" ingredients="양파 · 두부 · 간장 · 참기름" tags={["한식", "쉬움"]} likes={24} comments={3} />
+                        <FeedCard title="직접 만든 두부 간장조림" author="모카" tags={["한식", "쉬움"]} likes={24} comments={3} />
                     </div>
                 </Section>
 

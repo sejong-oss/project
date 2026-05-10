@@ -4,7 +4,12 @@ const sizes = {
     lg: "w-12 h-12 text-base",
 };
 
-export function Avatar({ src, name, size = "md", badge, className = "" }) {
+const colors = {
+    primary: "bg-primary-100 text-primary-700",
+    neutral:  "bg-gray-100 text-gray-600",
+};
+
+export function Avatar({ src, name, size = "md", color = "primary", badge, className = "" }) {
     const initials = name?.slice(0, 1) ?? "?";
 
     return (
@@ -12,7 +17,7 @@ export function Avatar({ src, name, size = "md", badge, className = "" }) {
             {src
                 ? <img src={src} alt={name} className={`${sizes[size]} rounded-full object-cover bg-gray-100`} />
                 : (
-                    <div className={`${sizes[size]} rounded-full bg-primary-100 text-primary-700 font-semibold flex items-center justify-center`}>
+                    <div className={`${sizes[size]} rounded-full font-semibold flex items-center justify-center ${colors[color]}`}>
                         {initials}
                     </div>
                 )

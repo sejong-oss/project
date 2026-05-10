@@ -1,3 +1,6 @@
+import { Favorite, Chat } from "@carbon/icons-react";
+import { Chip } from "./Chip.jsx";
+
 const cardVariants = {
     default: "bg-white border-gray-200",
     hero:    "bg-primary-100 border-transparent",
@@ -5,7 +8,7 @@ const cardVariants = {
 };
 
 const PhotoPlaceholder = ({ className = "" }) => (
-    <div className={`bg-gradient-to-br from-primary-100 to-primary-200 rounded-lg ${className}`} />
+    <div className={`bg-linear-to-br from-primary-100 to-primary-200 rounded-lg ${className}`} />
 );
 
 export function Card({ children, variant = "default", onClick, className = "" }) {
@@ -26,7 +29,6 @@ export function Card({ children, variant = "default", onClick, className = "" })
 
 export function RecipeCard({
     title,
-    ingredients,
     match,
     time,
     difficulty,
@@ -36,39 +38,31 @@ export function RecipeCard({
     onClick,
     className = "",
 }) {
-    const labelColor = variant === "hero" ? "text-primary-600" : "text-primary-500";
-    const metaColor  = variant === "hero" ? "text-primary-700" : "text-gray-400";
-    const ingColor   = variant === "hero" ? "text-primary-700" : "text-gray-500";
-
     return (
         <Card variant={variant} onClick={onClick} className={className}>
             {image
                 ? <img src={image} alt={title} className="w-full h-32 object-cover rounded-lg" />
                 : <PhotoPlaceholder className={variant === "hero" ? "h-40 from-primary-200 to-primary-300" : "h-32"} />
             }
-            <div>
-                {match != null && (
-                    <p className={`text-xs font-mono font-semibold mb-1 ${labelColor}`}>
-                        {variant === "hero" ? "HERO · 최선 조합" : `${match}% MATCH`}
-                    </p>
-                )}
-                <p className="text-sm font-semibold text-gray-900">{title}</p>
-                {ingredients && <p className={`text-xs mt-0.5 ${ingColor}`}>{ingredients}</p>}
+            <div className="flex flex-col gap-1.5 items-start">
+                {variant === "hero"
+                    ? <Chip variant="brand">최선 조합</Chip>
+                    : match != null && <Chip variant="brand-soft">{match}% MATCH</Chip>
+                }
+                <p className="text-base font-semibold text-gray-900">{title}</p>
             </div>
             {(time || difficulty || servings) && (
-                <div className={`flex gap-1.5 text-xs font-mono ${metaColor}`}>
-                    {time && <span>{time}</span>}
-                    {time && difficulty && <span>·</span>}
-                    {difficulty && <span>{difficulty}</span>}
-                    {(time || difficulty) && servings && <span>·</span>}
-                    {servings && <span>{servings}</span>}
+                <div className="flex gap-1.5 flex-wrap">
+                    {time && <Chip variant="neutral">{time}</Chip>}
+                    {difficulty && <Chip variant="neutral">{difficulty}</Chip>}
+                    {servings && <Chip variant="neutral">{servings}</Chip>}
                 </div>
             )}
         </Card>
     );
 }
 
-export function FeedCard({ title, ingredients, tags = [], likes, comments, image, onClick, className = "" }) {
+export function FeedCard({ title, tags = [], likes, comments, author, image, onClick, className = "" }) {
     return (
         <div
             onClick={onClick}
@@ -82,24 +76,31 @@ export function FeedCard({ title, ingredients, tags = [], likes, comments, image
                 ? <img src={image} alt={title} className="w-20 h-20 object-cover rounded-lg shrink-0" />
                 : <PhotoPlaceholder className="w-20 h-20 shrink-0" />
             }
-            <div className="flex flex-col gap-1 min-w-0">
+            <div className="flex flex-col gap-1.5 min-w-0">
+                <p className="text-base font-semibold text-gray-900 truncate">{title}</p>
                 {tags.length > 0 && (
                     <div className="flex gap-1.5 flex-wrap">
                         {tags.map((tag) => (
-                            <span key={tag} className="inline-flex px-2 py-0.5 bg-primary-100 text-primary-800 text-xs font-medium rounded-full">
-                                {tag}
-                            </span>
+                            <Chip key={tag} variant="brand-soft">{tag}</Chip>
                         ))}
                     </div>
                 )}
-                <p className="text-sm font-semibold text-gray-900 truncate">{title}</p>
-                {ingredients && <p className="text-xs text-gray-500 truncate">{ingredients}</p>}
+                {author && (
+                    <span className="text-sm text-gray-600 font-medium truncate">@{author}</span>
+                )}
                 {(likes != null || comments != null) && (
-                    <p className="text-xs font-mono text-gray-400 mt-auto">
-                        {likes != null && `❤ ${likes}`}
-                        {likes != null && comments != null && "  "}
-                        {comments != null && `💬 ${comments}`}
-                    </p>
+                    <div className="flex items-center gap-3 text-xs text-gray-400">
+                        {likes != null && (
+                            <span className="flex items-center gap-1">
+                                <Favorite size={12} /> {likes}
+                            </span>
+                        )}
+                        {comments != null && (
+                            <span className="flex items-center gap-1">
+                                <Chat size={12} /> {comments}
+                            </span>
+                        )}
+                    </div>
                 )}
             </div>
         </div>

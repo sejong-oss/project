@@ -7,13 +7,13 @@ export const RecipeCards = () => (
         <div>
             <p className="text-xs font-mono text-gray-400 uppercase tracking-widest mb-3">Hero</p>
             <div className="max-w-xs">
-                <RecipeCard variant="hero" title="계란볶음밥" ingredients="계란 · 대파 · 간장 · 밥" time="15분" difficulty="쉬움" servings="2인분" />
+                <RecipeCard variant="hero" title="계란볶음밥" time="15분" difficulty="쉬움" servings="2인분" />
             </div>
         </div>
         <div>
             <p className="text-xs font-mono text-gray-400 uppercase tracking-widest mb-3">Default</p>
             <div className="max-w-xs">
-                <RecipeCard title="두부 간장조림" ingredients="양파 · 두부 · 간장 · 참기름" match={98} time="20분" difficulty="쉬움" />
+                <RecipeCard title="두부 간장조림" match={98} time="20분" difficulty="쉬움" />
             </div>
         </div>
         <div>
@@ -29,7 +29,7 @@ export const RecipeCards = () => (
 
 export const FeedCards = () => (
     <div className="p-8 bg-white font-sans flex flex-col gap-3 max-w-sm">
-        <FeedCard title="직접 만든 두부 간장조림" ingredients="양파 · 두부 · 간장 · 참기름" tags={["한식", "쉬움"]} likes={24} comments={3} />
-        <FeedCard title="냉장고 털기 볶음밥" ingredients="계란 · 대파 · 밥 · 간장" tags={["한식", "30분"]} likes={12} comments={1} />
+        <FeedCard title="직접 만든 두부 간장조림" author="모카" tags={["한식", "쉬움"]} likes={24} comments={3} />
+        <FeedCard title="냉장고 털기 볶음밥" author="밥먹자" tags={["한식", "30분"]} likes={12} comments={1} />
     </div>
 );
