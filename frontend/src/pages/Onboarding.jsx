@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Button, Chip } from "@/components/index.js";
+import { Button, Chip, Container } from "@/components/index.js";
 import { SITE_NAME } from "@/lib/constants.js";
 import { RECIPES, useFlowAnimation } from "@/hooks/useFlowAnimation.js";
 import { EMPTY_EDGE, computeSvgPaths } from "@/lib/utils.js";
@@ -63,7 +63,7 @@ const VideoCard = () => (
             <span className="text-gray-400 text-sm">▶</span>
         </div>
         <div className="min-w-0">
-            <p className="text-[11px] text-gray-400 mb-0.5">유튜브</p>
+            <p className="text-[0.6875rem] text-gray-400 mb-0.5">유튜브</p>
             <p className="text-sm font-semibold text-gray-900 truncate">두부 간장조림 만들기</p>
         </div>
     </div>
@@ -209,46 +209,72 @@ const FlowPreview = () => {
 
 export default function Onboarding() {
     return (
-        <div className="min-h-screen bg-gray-50 font-sans flex flex-col lg:flex-row">
+        <div className="min-h-screen bg-gray-50 font-sans">
             <title>{SITE_NAME}</title>
+            <Container className="min-h-screen flex flex-col lg:flex-row">
 
-            <div className="flex flex-col justify-center px-7 pt-10 pb-6 lg:px-16 lg:py-0 lg:flex-1 gap-5">
-                <p className="text-xs font-mono font-semibold tracking-widest text-gray-500 uppercase">
-                    {SITE_NAME}
-                </p>
-                <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-gray-900 leading-none">
-                    오늘은 <span className="text-primary-500">뭐</span> 해먹지?
-                </h1>
-                <p className="text-sm lg:text-base text-gray-600 leading-relaxed max-w-sm">
-                    <span className="lg:hidden">
-                        냉장고 속 재료를 입력하면 AI가<br />가능한 요리를 3초 안에 추천해드려요.
-                    </span>
-                    <span className="hidden lg:inline">
-                        냉장고에 있는 재료를 입력하면, AI가 만들 수 있는
-                        요리 조합과 유튜브 영상까지 함께 추천해드려요.
-                    </span>
-                </p>
+                <div className="relative flex-1 flex flex-col items-center justify-center overflow-hidden lg:overflow-visible lg:items-start lg:justify-center lg:px-16 lg:py-0 lg:flex-1">
 
-                <div className="lg:hidden rounded-card h-48 mt-2 bg-linear-to-br from-primary-100 to-primary-200" />
+                    <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none lg:hidden">
+                        <div className="scale-[0.75] w-130">
+                            <FlowPreview />
+                        </div>
+                    </div>
 
-                <div className="flex flex-col lg:flex-row gap-3 mt-2">
-                    <Button variant="primary" size="lg" fullWidth className="lg:w-auto">
+                    <div
+                        className="absolute inset-0 z-1 pointer-events-none lg:hidden"
+                        style={{ background: "radial-gradient(ellipse 90% 60% at 50% 50%, rgba(249,250,251,0.82) 30%, transparent 100%)" }}
+                    />
+
+                    <div className="relative z-2 flex flex-col items-center text-center gap-5 px-7 py-8 lg:items-start lg:text-left lg:p-0">
+                        <p className="text-xs font-mono font-semibold tracking-widest text-gray-500 uppercase">
+                            {SITE_NAME}
+                        </p>
+                        <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-gray-900 leading-none">
+                            오늘은 <span className="text-primary-500">뭐</span> 해먹지?
+                        </h1>
+                        <p className="text-sm lg:text-base text-gray-600 leading-relaxed max-w-sm">
+                            냉장고에 있는 재료를 입력하면, AI가 만들 수 있는
+                            요리 조합과 유튜브 영상까지 함께 추천해드려요.
+                        </p>
+                        <div className="hidden lg:flex flex-col gap-5">
+                            <Button variant="primary" size="lg" className="w-fit">
+                                재료 담으면서 시작하기 →
+                            </Button>
+                            <div className="flex gap-6 text-xs text-gray-500 font-mono">
+                                <span>· 가입 없이 사용 가능</span>
+                                <span>· 빠른 추천</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="hidden lg:flex flex-1 items-center justify-center p-12 relative overflow-hidden">
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            backgroundImage: [
+                                "radial-gradient(ellipse 60% 55% at 50% 50%, rgba(224,104,46,0.07) 0%, transparent 100%)",
+                                "radial-gradient(circle, #d1d5db 1px, transparent 1px)",
+                            ].join(", "),
+                            backgroundSize: "100% 100%, 1.75rem 1.75rem",
+                            maskImage: "radial-gradient(ellipse 78% 72% at 50% 50%, black 32%, transparent 88%)",
+                        }}
+                    />
+                    <FlowPreview />
+                </div>
+
+                <div className="px-7 pb-12 flex flex-col gap-3 lg:hidden">
+                    <Button variant="primary" size="lg" fullWidth>
                         재료 담으면서 시작하기 →
                     </Button>
+                    <p className="text-sm text-gray-500 text-center">
+                        이미 가입했나요?{" "}
+                        <span className="text-primary-500 font-semibold cursor-pointer">로그인</span>
+                    </p>
                 </div>
-                <div className="hidden lg:flex gap-6 text-xs text-gray-500 font-mono">
-                    <span>· 가입 없이 사용 가능</span>
-                    <span>· 평균 3초 추천</span>
-                </div>
-                <p className="lg:hidden text-sm text-gray-500 text-center">
-                    이미 가입했나요?{" "}
-                    <span className="text-primary-500 font-semibold cursor-pointer">로그인</span>
-                </p>
-            </div>
 
-            <div className="hidden lg:flex flex-1 items-center justify-center p-12">
-                <FlowPreview />
-            </div>
+            </Container>
         </div>
     );
 }

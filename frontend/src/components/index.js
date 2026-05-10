@@ -1,4 +1,5 @@
 export { Button } from "@/components/Button.jsx";
+export { Container } from "@/components/Container.jsx";
 export { Chip } from "@/components/Chip.jsx";
 export { Input, TagInput } from "@/components/Input.jsx";
 export { Card, RecipeCard, FeedCard } from "@/components/Card.jsx";
