@@ -22,12 +22,16 @@ export function Button({
     onClick,
     className = "",
     type = "button",
+    ref,
+    ...props
 }) {
     return (
         <button
+            ref={ref}
             type={type}
             disabled={disabled}
             onClick={onClick}
+            {...props}
             className={[
                 "inline-flex items-center justify-center gap-1.5 font-medium transition-colors cursor-pointer",
                 "disabled:opacity-40 disabled:cursor-not-allowed",

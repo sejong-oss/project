@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Search } from "@carbon/icons-react";
+import { Search, Settings, User, Logout, TrashCan, Share } from "@carbon/icons-react";
 import {
     Button, Chip, Input, TagInput,
     RecipeCard, FeedCard,
     Avatar, CardSkeleton, FeedSkeleton,
     Toast, ProgressBar, TopNav, BottomTabBar, EmptyState,
     Select, SelectItem, SelectGroup, SelectSeparator,
+    DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
+    DropdownMenuItem, DropdownMenuSeparator, DropdownMenuDangerItem,
 } from "../components/index.js";
 
 export default { title: "Design System/Overview" };
@@ -237,6 +239,33 @@ export const DesignSystem = () => {
                         <Select placeholder="비활성화" disabled>
                             <SelectItem value="a">옵션</SelectItem>
                         </Select>
+                    </div>
+                </Section>
+
+                {/* Dropdown Menu */}
+                <Section title="Dropdown Menu">
+                    <div className="flex flex-wrap gap-3 items-start">
+                        <DropdownMenu>
+                            <DropdownMenuTrigger>
+                                <Button variant="outline">기본 메뉴</Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent>
+                                <DropdownMenuItem icon={<User size={16} />}>프로필 보기</DropdownMenuItem>
+                                <DropdownMenuItem icon={<Settings size={16} />}>설정</DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuDangerItem icon={<Logout size={16} />}>로그아웃</DropdownMenuDangerItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger>
+                                <Button variant="ink">레시피 관리</Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent>
+                                <DropdownMenuItem icon={<Share size={16} />}>공유하기</DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuDangerItem icon={<TrashCan size={16} />}>삭제</DropdownMenuDangerItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                     </div>
                 </Section>
 
