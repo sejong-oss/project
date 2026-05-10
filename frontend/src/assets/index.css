@@ -54,11 +54,11 @@
   --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
 
   /* Border radius */
-  --radius-chip:  999px;
-  --radius-btn:   10px;
-  --radius-card:  14px;
-  --radius-input: 10px;
-  --radius-modal: 18px;
+  --radius-chip:  62.4375rem;
+  --radius-btn:   0.625rem;
+  --radius-card:  0.875rem;
+  --radius-input: 0.625rem;
+  --radius-modal: 1.125rem;
 }
 
 @layer base {
@@ -71,7 +71,7 @@
     background-color: var(--color-white);
     color: var(--color-gray-900);
     font-family: var(--font-sans);
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.55;
     letter-spacing: -0.01em;
     -webkit-font-smoothing: antialiased;
