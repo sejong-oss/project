@@ -8,7 +8,7 @@ const variants = {
 export function Toast({ message, variant = "default", action, onAction, className = "" }) {
     return (
         <div className={[
-            "inline-flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium shadow-lg",
+            "inline-flex items-center gap-3 px-4 py-3 rounded-card text-sm font-medium shadow-lg",
             variants[variant],
             className,
         ].join(" ")}>

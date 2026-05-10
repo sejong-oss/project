@@ -12,7 +12,7 @@ export function Input({
     return (
         <div className={`flex flex-col gap-1.5 ${className}`}>
             <div className={[
-                "flex items-center gap-2 px-3.5 py-3 rounded-[10px] text-sm transition-colors",
+                "flex items-center gap-2 px-3.5 py-3 rounded-input text-sm transition-colors",
                 error
                     ? "bg-red-50 border border-red-300"
                     : "bg-gray-50 border border-gray-200 focus-within:border-primary-500 focus-within:bg-white",
@@ -49,7 +49,7 @@ export function TagInput({ tags = [], onAdd, onRemove, placeholder = "입력하�
 
     return (
         <div className={[
-            "flex flex-wrap gap-1.5 px-3.5 py-2.5 bg-white border border-gray-200 rounded-[10px]",
+            "flex flex-wrap gap-1.5 px-3.5 py-2.5 bg-white border border-gray-200 rounded-input",
             "focus-within:border-primary-500 transition-colors",
             className,
         ].join(" ")}>
