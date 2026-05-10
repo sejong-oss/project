@@ -6,6 +6,7 @@ import {
     Avatar, CardSkeleton, FeedSkeleton,
     Toast, ProgressBar, TopNav, BottomTabBar, EmptyState,
     Select, SelectItem, SelectGroup, SelectSeparator,
+    Tabs, TabsList, TabsTrigger, TabsContent,
     DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
     DropdownMenuItem, DropdownMenuSeparator, DropdownMenuDangerItem,
 } from "../components/index.js";
@@ -240,6 +241,31 @@ export const DesignSystem = () => {
                             <SelectItem value="a">옵션</SelectItem>
                         </Select>
                     </div>
+                </Section>
+
+                {/* Tabs */}
+                <Section title="Tabs">
+                    <Tabs defaultValue="recipe">
+                        <TabsList variant="line">
+                            <TabsTrigger value="recipe" variant="line">레시피</TabsTrigger>
+                            <TabsTrigger value="feed" variant="line">피드</TabsTrigger>
+                            <TabsTrigger value="saved" variant="line">저장됨</TabsTrigger>
+                        </TabsList>
+                        <TabsContent value="recipe">
+                            <div className="grid grid-cols-3 gap-4">
+                                <RecipeCard title="두부 간장조림" match={98} ingredients="양파 · 두부 · 간장" time="20분" difficulty="쉬움" />
+                                <RecipeCard title="된장찌개" match={76} ingredients="두부 · 대파 · 된장" time="30분" difficulty="보통" />
+                            </div>
+                        </TabsContent>
+                        <TabsContent value="feed">
+                            <div className="max-w-sm">
+                                <FeedCard title="직접 만든 두부 간장조림" ingredients="양파 · 두부 · 간장" tags={["한식", "쉬움"]} likes={24} comments={3} />
+                            </div>
+                        </TabsContent>
+                        <TabsContent value="saved">
+                            <p className="text-sm text-gray-500">저장한 레시피가 없어요.</p>
+                        </TabsContent>
+                    </Tabs>
                 </Section>
 
                 {/* Dropdown Menu */}
