@@ -1,18 +1,13 @@
 import { useState } from "react";
 import { Input, TagInput } from "../components/index.js";
-
-const SearchIcon = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
-    </svg>
-);
+import { Search } from "@carbon/icons-react";
 
 export default { title: "Design System/Inputs" };
 
 export const AllInputs = () => (
     <div className="p-8 bg-white font-sans flex flex-col gap-6 max-w-sm">
-        <Input placeholder="재료를 입력하세요" icon={<SearchIcon />} />
-        <Input placeholder="포커스 상태" icon={<SearchIcon />} defaultValue="두부" />
+        <Input placeholder="재료를 입력하세요" icon={<Search size={16} />} />
+        <Input placeholder="포커스 상태" icon={<Search size={16} />} defaultValue="두부" />
         <Input placeholder="오류 상태" error errorMessage="올바른 재료명을 입력해주세요." />
         <Input placeholder="비활성 입력" disabled />
     </div>

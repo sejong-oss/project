@@ -9,5 +9,6 @@ export { ToasterProvider } from "./ToasterProvider.jsx";
 export { toast } from "./toast.js";
 export { ProgressBar } from "./ProgressBar.jsx";
 export { Select, SelectItem, SelectGroup, SelectSeparator } from "./Select.jsx";
+export { Modal, ModalTrigger, ModalContent, ModalFooter, ModalClose } from "./Modal.jsx";
 export { TopNav, BottomTabBar } from "./Nav.jsx";
 export { EmptyState } from "./EmptyState.jsx";

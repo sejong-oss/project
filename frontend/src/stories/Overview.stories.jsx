@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Search } from "@carbon/icons-react";
 import {
     Button, Chip, Input, TagInput,
     RecipeCard, FeedCard,
@@ -143,11 +144,7 @@ export const DesignSystem = () => {
                 {/* Inputs */}
                 <Section title="Inputs">
                     <div className="grid grid-cols-2 gap-4 max-w-xl">
-                        <Input placeholder="재료를 입력하세요" icon={
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
-                            </svg>
-                        } />
+                        <Input placeholder="재료를 입력하세요" icon={<Search size={16} />} />
                         <Input placeholder="오류 상태" error errorMessage="올바른 재료명을 입력해주세요." />
                         <div className="col-span-2">
                             <TagInput
