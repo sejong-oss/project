@@ -1,5 +1,6 @@
 import * as RadixSelect from "@radix-ui/react-select";
 import { ChevronDown, ChevronUp, Checkmark } from "@carbon/icons-react";
+import { popoverAnim, sideAnim } from "./animations.js";
 
 const triggerSizes = {
     sm: "h-8 px-3 text-xs gap-1.5",
@@ -16,13 +17,13 @@ export function Select({ value, onValueChange, placeholder = "선택", disabled,
                     "text-gray-900 font-medium font-sans cursor-pointer select-none",
                     "hover:border-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20",
                     "disabled:opacity-50 disabled:cursor-not-allowed",
-                    "data-[placeholder]:text-gray-500",
+                    "data-placeholder:text-gray-500",
                     triggerSizes[size],
                     className,
                 ].join(" ")}
             >
                 <RadixSelect.Value placeholder={placeholder} />
-                <RadixSelect.Icon className="text-gray-500 flex-shrink-0">
+                <RadixSelect.Icon className="text-gray-500 shrink-0">
                     <ChevronDown size={16} />
                 </RadixSelect.Icon>
             </RadixSelect.Trigger>
@@ -32,12 +33,10 @@ export function Select({ value, onValueChange, placeholder = "선택", disabled,
                     position="popper"
                     sideOffset={6}
                     className={[
-                        "z-50 min-w-[var(--radix-select-trigger-width)] overflow-hidden",
+                        "z-50 min-w-(--radix-select-trigger-width) overflow-hidden",
                         "rounded-card bg-white shadow-lg border border-gray-200",
-                        "data-[state=open]:animate-in data-[state=closed]:animate-out",
-                        "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-                        "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-                        "data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2",
+                        popoverAnim,
+                        sideAnim,
                     ].join(" ")}
                 >
                     <RadixSelect.ScrollUpButton className="flex items-center justify-center py-1 text-gray-500">
@@ -65,7 +64,7 @@ export function SelectItem({ value, children, disabled }) {
                 "text-sm font-medium text-gray-900 cursor-pointer select-none outline-none",
                 "hover:bg-gray-100 focus:bg-gray-100",
                 "data-[state=checked]:text-primary-500",
-                "data-[disabled]:opacity-50 data-[disabled]:cursor-not-allowed",
+                "data-disabled:opacity-50 data-disabled:cursor-not-allowed",
             ].join(" ")}
         >
             <RadixSelect.ItemText>{children}</RadixSelect.ItemText>

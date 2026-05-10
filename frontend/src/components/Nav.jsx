@@ -7,7 +7,7 @@ const NAV_ITEMS = [
 export function TopNav({ active = "home", user, onNavClick, className = "" }) {
     return (
         <div className={`flex items-center gap-7 px-7 py-3.5 border-b border-gray-200 bg-white ${className}`}>
-            <div className="px-2.5 py-1 bg-gray-100 border border-dashed border-gray-300 rounded-md text-[11px] font-mono text-gray-400 shrink-0">로고</div>
+            <div className="px-2.5 py-1 bg-gray-100 border border-dashed border-gray-300 rounded-md text-xs font-mono text-gray-400 shrink-0">로고</div>
             <nav className="flex gap-6 flex-1">
                 {NAV_ITEMS.map(({ key, label }) => (
                     <span
@@ -50,7 +50,7 @@ export function BottomTabBar({ active = "home", onChange, className = "" }) {
                     className={`flex-1 flex flex-col items-center gap-1 pt-2 cursor-pointer ${active === key ? "text-primary-500" : "text-gray-400"}`}
                 >
                     <Icon size={24} />
-                    <span className={`text-[10px] ${active === key ? "font-semibold" : "font-medium"}`}>{label}</span>
+                    <span className={`text-xs ${active === key ? "font-semibold" : "font-medium"}`}>{label}</span>
                 </div>
             ))}
         </div>

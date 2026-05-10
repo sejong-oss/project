@@ -23,7 +23,7 @@ export function Avatar({ src, name, size = "md", color = "primary", badge, class
                 )
             }
             {badge != null && (
-                <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-red-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center">
+                <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
                     {badge > 9 ? "9+" : badge}
                 </span>
             )}

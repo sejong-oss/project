@@ -1,5 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { Close } from "@carbon/icons-react";
+import { popoverAnim, modalContentAnim } from "./animations.js";
 
 export function Modal({ open, onOpenChange, children }) {
     return (
@@ -22,16 +23,12 @@ export function ModalContent({ title, description, children, size = "md" }) {
 
     return (
         <Dialog.Portal>
-            <Dialog.Overlay className="fixed inset-0 bg-overlay z-50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
+            <Dialog.Overlay className={["fixed inset-0 bg-overlay z-50", popoverAnim].join(" ")} />
             <Dialog.Content
                 className={[
                     "fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[calc(100%-2rem)]",
                     "bg-white rounded-modal shadow-xl p-6 outline-none",
-                    "data-[state=open]:animate-in data-[state=closed]:animate-out",
-                    "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-                    "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-                    "data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%]",
-                    "data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
+                    modalContentAnim,
                     sizes[size],
                 ].join(" ")}
             >
@@ -48,7 +45,7 @@ export function ModalContent({ title, description, children, size = "md" }) {
                             </Dialog.Description>
                         )}
                     </div>
-                    <Dialog.Close className="flex-shrink-0 p-1 rounded-btn text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
+                    <Dialog.Close className="shrink-0 p-1 rounded-btn text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
                         <Close size={18} />
                     </Dialog.Close>
                 </div>
