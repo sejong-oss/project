@@ -4,7 +4,7 @@ import {
     RecipeCard, FeedCard,
     Avatar, CardSkeleton, FeedSkeleton,
     Toast, ProgressBar, TopNav, BottomTabBar, EmptyState,
-
+    Select, SelectItem, SelectGroup, SelectSeparator,
 } from "../components/index.js";
 
 export default { title: "Design System/Overview" };
@@ -28,6 +28,8 @@ const Swatch = ({ label, hex, className }) => (
 
 export const DesignSystem = () => {
     const [tags, setTags] = useState(["양파", "계란"]);
+    const [difficulty, setDifficulty] = useState("");
+    const [sort, setSort] = useState("popular");
 
     return (
         <div className="min-h-screen bg-white font-sans">
@@ -213,6 +215,31 @@ export const DesignSystem = () => {
                         <EmptyState icon="🍳" title="추천 결과가 없어요" description="다른 재료 조합으로 다시 시도해보세요." action="재료 다시 입력" />
                         <EmptyState icon="📋" title="공유된 레시피가 없어요" description="첫 번째 레시피를 공유해보세요!" action="레시피 공유하기" />
                         <EmptyState icon="⭐" title="저장한 레시피가 없어요" description="마음에 드는 레시피에 하트를 눌러보세요." />
+                    </div>
+                </Section>
+
+                {/* Select */}
+                <Section title="Select">
+                    <div className="flex flex-wrap gap-3 items-start">
+                        <Select value={difficulty} onValueChange={setDifficulty} placeholder="난이도">
+                            <SelectItem value="easy">쉬움</SelectItem>
+                            <SelectItem value="medium">보통</SelectItem>
+                            <SelectItem value="hard">어려움</SelectItem>
+                        </Select>
+                        <Select value={sort} onValueChange={setSort} placeholder="정렬">
+                            <SelectGroup label="인기">
+                                <SelectItem value="popular">인기순</SelectItem>
+                                <SelectItem value="trending">트렌딩</SelectItem>
+                            </SelectGroup>
+                            <SelectSeparator />
+                            <SelectGroup label="시간">
+                                <SelectItem value="newest">최신순</SelectItem>
+                                <SelectItem value="oldest">오래된순</SelectItem>
+                            </SelectGroup>
+                        </Select>
+                        <Select placeholder="비활성화" disabled>
+                            <SelectItem value="a">옵션</SelectItem>
+                        </Select>
                     </div>
                 </Section>
 
