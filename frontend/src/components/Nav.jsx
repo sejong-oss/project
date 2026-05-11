@@ -1,6 +1,6 @@
 const NAV_ITEMS = [
     { key: "home",    label: "홈" },
-    { key: "results", label: "추천" },
+    { key: "recipes", label: "추천" },
     { key: "feed",    label: "피드" },
 ];
 
@@ -16,7 +16,7 @@ export function TopNav({ active = "home", user, onNavClick, className = "" }) {
                         className={[
                             "text-sm font-medium cursor-pointer pb-px relative",
                             active === key
-                                ? "text-gray-900 after:absolute after:left-0 after:right-0 after:-bottom-[15px] after:h-[2px] after:bg-primary-500 after:rounded-sm"
+                                ? "text-gray-900 after:absolute after:left-0 after:right-0 after:-bottom-3.75 after:h-0.5 after:bg-primary-500 after:rounded-sm"
                                 : "text-gray-500 hover:text-gray-700",
                         ].join(" ")}
                     >
@@ -35,7 +35,7 @@ import { Home, Recommend, ShowDataCards, UserAvatar } from "@carbon/icons-react"
 
 const TAB_ITEMS = [
     { key: "home",    label: "홈",  Icon: Home },
-    { key: "results", label: "추천", Icon: Recommend },
+    { key: "recipes", label: "추천", Icon: Recommend },
     { key: "feed",    label: "피드", Icon: ShowDataCards },
     { key: "my",      label: "MY",  Icon: UserAvatar },
 ];
