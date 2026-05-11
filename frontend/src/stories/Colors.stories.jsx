@@ -1,14 +1,14 @@
 const Swatch = ({ label, hex, className }) => (
     <div className="flex flex-col gap-1.5">
         <div className={`h-12 rounded-lg border border-gray-200 ${className}`} />
-        <span className="text-xs font-mono text-gray-700 font-medium">{label}</span>
-        <span className="text-xs font-mono text-gray-400">{hex}</span>
+        <span className="text-xs text-gray-700 font-medium">{label}</span>
+        <span className="text-xs text-gray-400">{hex}</span>
     </div>
 );
 
 const Row = ({ title, swatches }) => (
     <div className="mb-8">
-        <p className="text-xs font-mono text-gray-400 uppercase tracking-widest mb-3">{title}</p>
+        <p className="text-xs text-gray-400 uppercase tracking-widest mb-3">{title}</p>
         <div className="grid grid-cols-5 gap-3 sm:grid-cols-10">
             {swatches.map((s) => <Swatch key={s.label} {...s} />)}
         </div>
@@ -61,7 +61,7 @@ export const Palette = () => (
 
 export const Semantic = () => (
     <div className="p-8 bg-white font-sans flex flex-col gap-3">
-        <p className="text-xs font-mono text-gray-400 uppercase tracking-widest mb-1">Semantic Usage</p>
+        <p className="text-xs text-gray-400 uppercase tracking-widest mb-1">Semantic Usage</p>
         {[
             { label: "Primary · CTA, 강조", bg: "bg-primary-500", text: "text-white" },
             { label: "Primary Soft · 칩 배경, 태그", bg: "bg-primary-100", text: "text-primary-800" },

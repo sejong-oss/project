@@ -51,7 +51,6 @@
 
   /* Typography */
   --font-sans: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
 
   /* Border radius */
   --radius-chip: 62.4375rem;

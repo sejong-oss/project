@@ -15,7 +15,7 @@ export default { title: "Design System/Overview" };
 
 const Section = ({ title, children }) => (
     <section className="mb-12">
-        <h2 className="text-[10px] font-mono font-medium tracking-widest text-gray-400 uppercase mb-4 pb-2 border-b border-gray-200">
+        <h2 className="text-[10px] font-medium tracking-widest text-gray-400 uppercase mb-4 pb-2 border-b border-gray-200">
             {title}
         </h2>
         {children}
@@ -25,8 +25,8 @@ const Section = ({ title, children }) => (
 const Swatch = ({ label, hex, className }) => (
     <div className="flex flex-col gap-1.5">
         <div className={`h-10 rounded-lg border border-gray-200 ${className}`} />
-        <span className="text-[10px] font-mono text-gray-600">{label}</span>
-        <span className="text-[10px] font-mono text-gray-400">{hex}</span>
+        <span className="text-[10px] text-gray-600">{label}</span>
+        <span className="text-[10px] text-gray-400">{hex}</span>
     </div>
 );
 
@@ -39,7 +39,7 @@ export const DesignSystem = () => {
         <div className="min-h-screen bg-white font-sans">
             <div className="max-w-5xl mx-auto px-8 py-12">
                 <div className="mb-12">
-                    <p className="text-xs font-mono text-gray-400 mb-1">design system · v1</p>
+                    <p className="text-xs text-gray-400 mb-1">design system · v1</p>
                     <h1 className="text-3xl font-bold tracking-tight text-gray-900">컴포넌트 개요</h1>
                 </div>
 
@@ -86,7 +86,7 @@ export const DesignSystem = () => {
                         ].map(({ label, cls }) => (
                             <div key={label} className="flex flex-col gap-1.5">
                                 <div className={`w-12 h-10 rounded-lg border border-gray-200 ${cls}`} />
-                                <span className="text-[10px] font-mono text-gray-500">{label}</span>
+                                <span className="text-[10px] text-gray-500">{label}</span>
                             </div>
                         ))}
                     </div>
@@ -100,10 +100,10 @@ export const DesignSystem = () => {
                             { cls: "text-2xl font-semibold tracking-tight", text: "냉장고 재료 레시피 추천", label: "24/600" },
                             { cls: "text-base text-gray-600", text: "가지고 있는 재료를 입력하면, AI가 가능한 요리 조합과 유튜브 영상까지 추천해드려요.", label: "16/400" },
                             { cls: "text-sm text-gray-500", text: "이미 가입했나요? 로그인", label: "14/400" },
-                            { cls: "text-xs font-mono text-gray-400", text: "98% MATCH · 30분 · 쉬움", label: "mono" },
+                            { cls: "text-xs text-gray-400", text: "20분 · 쉬움 · 2인분", label: "metadata" },
                         ].map(({ cls, text, label }) => (
                             <div key={label} className="flex items-baseline gap-6">
-                                <span className="text-[10px] font-mono text-gray-300 w-14 shrink-0">{label}</span>
+                                <span className="text-[10px] text-gray-300 w-14 shrink-0">{label}</span>
                                 <span className={cls}>{text}</span>
                             </div>
                         ))}

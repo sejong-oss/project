@@ -17,7 +17,7 @@ export const TagInputDemo = () => {
     const [tags, setTags] = useState(["양파", "계란", "대파"]);
     return (
         <div className="p-8 bg-white font-sans max-w-sm">
-            <p className="text-xs font-mono text-gray-400 mb-3">Enter 또는 쉼표로 태그 추가</p>
+            <p className="text-xs text-gray-400 mb-3">Enter 또는 쉼표로 태그 추가</p>
             <TagInput
                 tags={tags}
                 onAdd={(t) => setTags([...tags, t])}
