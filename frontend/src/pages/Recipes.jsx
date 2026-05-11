@@ -76,9 +76,6 @@ export default function Recipes() {
 
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                 <div className="flex flex-col gap-3">
-                    <p className="text-xs font-semibold tracking-widest text-gray-400 uppercase">
-                        {INGREDIENTS.length}개 재료 · {OTHERS.length + 1}개 추천
-                    </p>
                     <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
                         오늘은 <span className="text-primary-500">이거</span> 어때요?
                     </h1>
