@@ -1,1 +1,4 @@
-# sejong-oss-project
+# meoknaeng
+
+오늘은 뭐 해먹지?  
+냉장고 재료 기반 AI 레시피 추천 서비스, 뭐해먹냉의 모노레포입니다.
