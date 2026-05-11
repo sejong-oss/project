@@ -1,12 +1,13 @@
+import { MemoryRouter } from "react-router-dom";
 import { ToasterProvider } from "@/components/ToasterProvider.jsx";
 import "@/assets/index.css";
 
 export const decorators = [
     (Story) => (
-        <>
+        <MemoryRouter>
             <Story />
             <ToasterProvider />
-        </>
+        </MemoryRouter>
     ),
 ];
 
