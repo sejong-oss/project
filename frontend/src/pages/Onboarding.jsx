@@ -52,7 +52,7 @@ const RecipeRow = ({ name, match, dimmed }) => (
         <div className="w-8 h-8 rounded-btn bg-primary-100 shrink-0" />
         <div className="flex-1 min-w-0">
             <p className="text-sm font-semibold text-gray-900 truncate">{name}</p>
-            <p className="text-xs font-mono font-semibold text-primary-500">{match}% MATCH</p>
+            <p className="text-xs font-semibold text-primary-500">{match}% MATCH</p>
         </div>
     </div>
 );
@@ -71,7 +71,7 @@ const VideoCard = () => (
 
 const StepBadge = ({ n, label }) => (
     <Chip variant="outline" className="shadow-sm gap-1.5">
-        <span className="font-mono font-bold text-primary-500">0{n}</span>
+        <span className="font-bold text-primary-500">0{n}</span>
         <span>{label}</span>
     </Chip>
 );
@@ -221,7 +221,7 @@ export default function Onboarding() {
                     />
 
                     <div className="relative z-2 flex flex-col items-center text-center gap-5 px-7 py-8 lg:items-start lg:text-left lg:p-0">
-                        <p className="text-xs font-mono font-semibold tracking-widest text-gray-500 uppercase">
+                        <p className="text-xs font-semibold tracking-widest text-gray-500 uppercase">
                             {SITE_NAME}
                         </p>
                         <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-gray-900 leading-none">
@@ -235,7 +235,7 @@ export default function Onboarding() {
                             <Button variant="primary" size="lg" className="w-fit">
                                 재료 담으면서 시작하기 →
                             </Button>
-                            <div className="flex gap-6 text-xs text-gray-500 font-mono">
+                            <div className="flex gap-6 text-xs text-gray-500">
                                 <span>· 가입 없이 사용 가능</span>
                                 <span>· 빠른 추천</span>
                             </div>
