@@ -1,17 +1,17 @@
 import { useState, useMemo, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, Add, Close, Favorite, Filter } from "@carbon/icons-react";
+import { Search, Add, Close, Favorite, FavoriteFilled, Filter, Time, SkillLevelBasic, Category } from "@carbon/icons-react";
 import { Button, Chip, EmptyState, Avatar } from "@/components/index.js";
 
 const FEED_ITEMS = [
     { id: 1, title: "된장찌개 황금레시피", time: "20분", category: "한식", difficulty: "쉬움", author: "집밥하는모카", likes: 312, tone: "soft" },
     { id: 2, title: "두부 스테이크", time: "20분", category: "한식", difficulty: "쉬움", author: "오늘의키친", likes: 187, tone: "dim" },
-    { id: 3, title: "김치볶음밥", time: "20분", category: "한식", difficulty: "쉬움", author: "자취요리", likes: 94, tone: "default" },
-    { id: 4, title: "계란말이 마스터", time: "20분", category: "한식", difficulty: "쉬움", author: "고동그라미", likes: 428, tone: "deep" },
+    { id: 3, title: "김치볶음밥", time: "20분", category: "한식", difficulty: "쉬움", author: "자취요리", likes: 94, tone: "soft" },
+    { id: 4, title: "계란말이 마스터", time: "20분", category: "한식", difficulty: "쉬움", author: "고동그라미", likes: 428, tone: "dim" },
     { id: 5, title: "파스타 알리오", time: "25분", category: "양식", difficulty: "보통", author: "파스타러버", likes: 221, tone: "soft" },
     { id: 6, title: "떡볶이 즉석", time: "15분", category: "한식", difficulty: "쉬움", author: "맵부심", likes: 156, tone: "dim" },
-    { id: 7, title: "오믈렛 브런치", time: "12분", category: "양식", difficulty: "쉬움", author: "브런치킹", likes: 98, tone: "default" },
-    { id: 8, title: "비빔국수", time: "10분", category: "한식", difficulty: "쉬움", author: "쿨하게쿡", likes: 267, tone: "deep" },
+    { id: 7, title: "오믈렛 브런치", time: "12분", category: "양식", difficulty: "쉬움", author: "브런치킹", likes: 98, tone: "soft" },
+    { id: 8, title: "비빔국수", time: "10분", category: "한식", difficulty: "쉬움", author: "쿨하게쿡", likes: 267, tone: "dim" },
 ];
 
 const FILTER_OPTIONS = [
@@ -54,30 +54,32 @@ const photoTones = {
 };
 
 function PostCard({ item, onClick }) {
+    const [liked, setLiked] = useState(false);
+
     return (
         <div
             onClick={onClick}
-            className="bg-white border border-gray-200 rounded-card overflow-hidden cursor-pointer hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-row sm:flex-col"
+            className="bg-white border border-gray-200 rounded-card overflow-hidden cursor-pointer hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col"
         >
-            <div
-                className={[
-                    "bg-linear-to-br shrink-0",
-                    "w-[5.5rem] h-[5.5rem] sm:w-full sm:h-40",
-                    photoTones[item.tone] ?? photoTones.default,
-                ].join(" ")}
-            />
-            <div className="flex flex-col gap-1.5 p-3 sm:p-4 min-w-0 flex-1 relative">
-                <span className="absolute top-3 right-3 flex items-center gap-1 text-xs text-gray-400">
-                    <Favorite size={12} />
-                    {item.likes}
-                </span>
-                <p className="text-sm font-semibold text-gray-900 pr-10 leading-snug line-clamp-2">
+            <div className="relative w-full h-28 lg:h-40">
+                <div className={["bg-linear-to-br w-full h-full", photoTones[item.tone] ?? photoTones.default].join(" ")} />
+                <button
+                    onClick={(e) => { e.stopPropagation(); setLiked((v) => !v); }}
+                    className="absolute top-2 right-2 flex items-center gap-1 px-2 py-1 rounded-full bg-white/75 backdrop-blur-sm text-xs transition-colors"
+                    style={{ color: liked ? "#e0682e" : "#8c8170" }}
+                >
+                    {liked ? <FavoriteFilled size={12} /> : <Favorite size={12} />}
+                    <span className={liked ? "font-semibold" : ""}>{item.likes + (liked ? 1 : 0)}</span>
+                </button>
+            </div>
+            <div className="flex flex-col gap-2.5 p-2.5 lg:p-4 flex-1">
+                <p className="text-base font-semibold text-gray-900 leading-snug line-clamp-2">
                     {item.title}
                 </p>
                 <div className="flex gap-1 flex-wrap">
-                    <Chip variant="neutral">{item.time}</Chip>
-                    <Chip variant="neutral">{item.category}</Chip>
-                    <Chip variant="neutral">{item.difficulty}</Chip>
+                    <Chip variant="neutral"><Time size={11} />{item.time}</Chip>
+                    <Chip variant="neutral"><Category size={11} />{item.category}</Chip>
+                    <Chip variant="neutral"><SkillLevelBasic size={11} />{item.difficulty}</Chip>
                 </div>
                 <div className="flex items-center gap-1.5 mt-auto pt-1">
                     <Avatar name={item.author} size="sm" />
@@ -258,7 +260,7 @@ export default function Feed() {
                     onAction={clearAll}
                 />
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                <div className="grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                     {filteredItems.map((item) => (
                         <PostCard
                             key={item.id}
@@ -269,14 +271,6 @@ export default function Feed() {
                 </div>
             )}
 
-            {/* 모바일 FAB */}
-            <button
-                onClick={() => navigate("/feed/write")}
-                className="fixed bottom-[4.75rem] right-4 md:hidden flex items-center gap-2 bg-primary-500 text-white px-4 py-3 rounded-full shadow-lg font-semibold text-sm z-10"
-            >
-                <Add size={16} />
-                레시피 공유
-            </button>
         </div>
     );
 }
