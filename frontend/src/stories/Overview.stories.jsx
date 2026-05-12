@@ -4,7 +4,7 @@ import {
     Button, Chip, Input, TagInput,
     RecipeCard, FeedCard,
     Avatar, CardSkeleton, FeedSkeleton,
-    Toast, ProgressBar, TopNav, BottomTabBar, EmptyState,
+    Toast, ProgressBar, TopNav, BottomTabBar, Breadcrumb, EmptyState,
     Select, SelectItem, SelectGroup, SelectSeparator,
     Tabs, TabsList, TabsTrigger, TabsContent,
     DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
@@ -188,6 +188,12 @@ export const DesignSystem = () => {
                 {/* Nav */}
                 <Section title="Navigation">
                     <div className="flex flex-col gap-4">
+                        <Breadcrumb
+                            items={[
+                                { label: "추천 결과", onClick: () => {} },
+                                { label: "두부 간장조림" },
+                            ]}
+                        />
                         <div className="border border-gray-200 rounded-xl overflow-hidden">
                             <TopNav active="home" user={{ name: "김" }} />
                         </div>
