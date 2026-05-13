@@ -12,6 +12,7 @@ export { toast } from "@/lib/toast.js";
 export { ProgressBar } from "@/components/ProgressBar.jsx";
 export { Select, SelectItem, SelectGroup, SelectSeparator } from "@/components/Select.jsx";
 export { Modal, ModalTrigger, ModalContent, ModalFooter, ModalClose } from "@/components/Modal.jsx";
+export { LoginModal } from "@/components/modals/LoginModal.jsx";
 export { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/Tabs.jsx";
 export {
     DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
