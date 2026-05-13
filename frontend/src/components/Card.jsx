@@ -97,8 +97,7 @@ export function FeedCard({ title, time, category, difficulty, image, author, lik
                 }
                 <button
                     onClick={(e) => { e.stopPropagation(); setLiked((v) => !v); }}
-                    className="absolute top-2 right-2 flex items-center gap-1 px-2 py-1 rounded-full bg-white/75 backdrop-blur-sm text-xs transition-colors"
-                    style={{ color: liked ? "#e0682e" : "#8c8170" }}
+                    className={["absolute top-2 right-2 flex items-center gap-1 px-2 py-1 rounded-full bg-white/75 backdrop-blur-sm text-xs transition-colors", liked ? "text-primary-500" : "text-gray-500"].join(" ")}
                 >
                     {liked ? <FavoriteFilled size={12} /> : <Favorite size={12} />}
                     <span className={liked ? "font-semibold" : ""}>{likes + (liked ? 1 : 0)}</span>
