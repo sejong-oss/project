@@ -142,12 +142,12 @@ export default function Feed() {
     }, [searchQuery, activeFilters]);
 
     return (
-        <div className="flex flex-col gap-4 pb-2">
+        <div className="flex flex-col gap-6 py-4 md:py-6">
 
             {/* 상단 타이틀 + 공유 버튼 (데스크탑) */}
             <div className="flex items-end justify-between">
                 <div className="flex flex-col gap-1">
-<h1 className="text-3xl md:text-[42px] font-extrabold tracking-tight md:tracking-[-0.025em] text-gray-900 leading-tight md:leading-[1.05]">
+                    <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
                         오늘의 <span className="text-primary-500">한 그릇</span>
                     </h1>
                 </div>
