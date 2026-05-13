@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Favorite, Renew, Share, Star, Time, Video } from "@carbon/icons-react";
-import { Button, Chip, EmptyState, RecipeCard } from "@/components/index.js";
+import { ArrowRight, Favorite, Renew, Share, Star, Time, Video } from "@carbon/icons-react";
+import { Button, Card, Chip, EmptyState, RecipeCard } from "@/components/index.js";
 
 const INGREDIENTS = ["양파", "계란", "두부", "대파", "간장"];
 
@@ -45,7 +45,7 @@ export default function Recipes() {
 
     if (!hasResults) {
         return (
-            <div className="rounded-card border border-gray-200 bg-gray-50 px-4 py-10 md:px-6 md:py-14">
+            <Card variant="muted" className="min-h-[calc(100dvh-8.5rem)] justify-center px-4 py-10 md:min-h-[28rem] md:px-6 md:py-14">
                 <EmptyState
                     icon="🍳"
                     title="아직 추천 결과가 없어요"
@@ -53,32 +53,24 @@ export default function Recipes() {
                     action="재료 입력하러 가기"
                     onAction={() => navigate("/home")}
                 />
-            </div>
+            </Card>
         );
     }
 
     return (
         <div className="flex flex-col gap-6 py-4 md:py-6">
 
-            <div className="flex items-center justify-between md:hidden">
-                <button
-                    onClick={() => navigate("/home")}
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-gray-700"
-                >
-                    <ArrowLeft size={16} />
-                    재료 다시 입력
-                </button>
-                <Button variant="ghost" size="sm">
-                    <Renew size={14} />
-                    다시 추천
-                </Button>
-            </div>
-
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                 <div className="flex flex-col gap-3">
-                    <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
-                        오늘은 <span className="text-primary-500">이거</span> 어때요?
-                    </h1>
+                    <div className="flex items-center justify-between gap-3 md:block">
+                        <h1 className="min-w-0 text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
+                            오늘은 <span className="text-primary-500">이거</span> 어때요?
+                        </h1>
+                        <Button variant="outline" size="sm" onClick={() => navigate("/home")} className="shrink-0 md:hidden">
+                            <Renew size={14} />
+                            다시 추천
+                        </Button>
+                    </div>
                     <div className="flex flex-wrap gap-1.5">
                         {INGREDIENTS.map((ing) => (
                             <Chip key={ing} variant="brand-soft">{ing}</Chip>
@@ -86,14 +78,14 @@ export default function Recipes() {
                     </div>
                 </div>
                 <div className="hidden md:flex items-center gap-2 shrink-0">
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" onClick={() => navigate("/home")}>
                         <Renew size={14} />
                         다시 추천
                     </Button>
                 </div>
             </div>
 
-            <div className="overflow-hidden rounded-card border border-gray-200 bg-white p-3.5 shadow-xl md:p-5">
+            <Card className="overflow-hidden p-3.5 shadow-xl md:p-5">
                 <div className="flex flex-col gap-4 md:grid md:grid-cols-[23.75rem_1fr] md:gap-6">
                     <PhotoPlaceholder
                         label={HERO.title}
@@ -121,35 +113,37 @@ export default function Recipes() {
                                 </Chip>
                                 <Chip variant="outline">난이도 {HERO.difficulty}</Chip>
                                 <Chip variant="outline">{INGREDIENTS.length}/{INGREDIENTS.length} 재료 보유</Chip>
-                                <Chip variant="outline" className="hidden md:inline-flex">
+                                <Chip variant="outline">
                                     <Video size={12} />
                                     유튜브 3개
                                 </Chip>
-                                <Chip variant="outline" className="hidden md:inline-flex">{HERO.servings}</Chip>
+                                <Chip variant="outline">{HERO.servings}</Chip>
                             </div>
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex flex-wrap gap-2">
                             <Button
                                 variant="primary"
                                 size="lg"
-                                className="flex-1 md:flex-none"
+                                className="min-w-36 flex-1 lg:flex-none"
                                 onClick={() => navigate(`/recipes/${HERO.id}`)}
                             >
                                 레시피 보기
                                 <ArrowRight size={16} />
                             </Button>
-                            <Button variant="outline" size="lg" className="hidden md:inline-flex">
-                                <Favorite size={16} />
-                                저장
-                            </Button>
-                            <Button variant="outline" size="lg" className="hidden md:inline-flex">
-                                <Share size={16} />
-                                공유
-                            </Button>
+                            <div className="flex flex-1 gap-2 lg:flex-none">
+                                <Button variant="outline" size="lg" className="flex-1 px-4 md:px-5 lg:flex-none" aria-label="저장">
+                                    <Favorite size={18} />
+                                    <span className="hidden md:inline">저장</span>
+                                </Button>
+                                <Button variant="outline" size="lg" className="flex-1 px-4 md:px-5 lg:flex-none" aria-label="공유">
+                                    <Share size={18} />
+                                    <span className="hidden md:inline">공유</span>
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </Card>
 
             <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between">

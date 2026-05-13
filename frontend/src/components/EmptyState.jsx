@@ -1,3 +1,5 @@
+import { Button } from "@/components/Button.jsx";
+
 export function EmptyState({ icon, title, description, action, onAction, className = "" }) {
     return (
         <div className={`flex flex-col items-center gap-3 py-16 px-8 text-center ${className}`}>
@@ -11,13 +13,9 @@ export function EmptyState({ icon, title, description, action, onAction, classNa
                 {description && <p className="text-sm text-gray-500">{description}</p>}
             </div>
             {action && (
-                <button
-                    type="button"
-                    onClick={onAction}
-                    className="mt-1 px-4 py-2.5 bg-primary-500 text-white text-sm font-medium rounded-btn hover:bg-primary-600 transition-colors"
-                >
+                <Button variant="primary" size="md" onClick={onAction} className="mt-1">
                     {action}
-                </button>
+                </Button>
             )}
         </div>
     );

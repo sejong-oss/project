@@ -33,7 +33,7 @@ export function Button({
             onClick={onClick}
             {...props}
             className={[
-                "inline-flex items-center justify-center gap-1.5 font-semibold transition-colors cursor-pointer",
+                "inline-flex items-center justify-center gap-1.5 whitespace-nowrap font-semibold transition-colors cursor-pointer",
                 "disabled:opacity-40 disabled:cursor-not-allowed",
                 variants[variant],
                 sizes[size],
