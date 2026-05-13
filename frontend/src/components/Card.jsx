@@ -86,7 +86,7 @@ export function FeedCard({ title, time, category, difficulty, image, author, lik
         <div
             onClick={onClick}
             className={[
-                "bg-white border border-gray-200 rounded-card overflow-hidden cursor-pointer hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col",
+                "bg-white border border-gray-200 rounded-card overflow-hidden cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-md flex flex-col",
                 className,
             ].join(" ")}
         >
