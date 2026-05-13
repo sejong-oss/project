@@ -102,12 +102,10 @@ export default function Feed() {
         <div className="flex flex-col gap-6 py-4 md:py-6">
 
             {/* 상단 타이틀 + 공유 버튼 (데스크탑) */}
-            <div className="flex items-end justify-between">
-                <div className="flex flex-col gap-1">
-                    <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
-                        오늘의 <span className="text-primary-500">한 그릇</span>
-                    </h1>
-                </div>
+            <div className="flex items-center justify-between">
+                <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
+                    오늘의 <span className="text-primary-500">한 그릇</span>
+                </h1>
                 <div className="hidden md:block">
                     <Button
                         variant="primary"
