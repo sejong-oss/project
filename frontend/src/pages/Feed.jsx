@@ -1,7 +1,7 @@
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, Add, Close, Filter } from "@carbon/icons-react";
-import { Button, Chip, EmptyState, FeedCard } from "@/components/index.js";
+import { Search, Add, Filter } from "@carbon/icons-react";
+import { Button, Chip, EmptyState, FeedCard, Input, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem } from "@/components/index.js";
 
 const FEED_ITEMS = [
     { id: 1, title: "된장찌개", time: "20분", category: "한식", difficulty: "쉬움", author: "집밥하는모카", likes: 312 },
@@ -51,19 +51,6 @@ export default function Feed() {
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState("");
     const [activeFilters, setActiveFilters] = useState([]);
-    const [filterOpen, setFilterOpen] = useState(false);
-    const filterRef = useRef(null);
-
-    useEffect(() => {
-        if (!filterOpen) return;
-        const handleClick = (e) => {
-            if (filterRef.current && !filterRef.current.contains(e.target)) {
-                setFilterOpen(false);
-            }
-        };
-        document.addEventListener("mousedown", handleClick);
-        return () => document.removeEventListener("mousedown", handleClick);
-    }, [filterOpen]);
 
     const toggleFilter = (group, label, value) => {
         const key = `${group}:${value}`;
@@ -119,77 +106,61 @@ export default function Feed() {
             </div>
 
             {/* 검색바 + 필터 버튼 */}
-            <div className="flex gap-2 items-start max-w-3xl" ref={filterRef}>
-                <div className="relative flex-1">
-                    <div className="flex items-center gap-2 px-3.5 py-3 rounded-input text-sm bg-gray-50 border border-gray-200 focus-within:border-primary-500 focus-within:bg-white transition-colors">
-                        <Search size={16} className="text-gray-400 shrink-0" />
-                        <input
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            placeholder="레시피, 재료, 작성자 검색..."
-                            className="bg-transparent outline-none w-full text-gray-900 placeholder:text-gray-500 text-sm"
-                        />
-                        {searchQuery && (
-                            <button
-                                onClick={() => setSearchQuery("")}
-                                className="text-gray-400 hover:text-gray-600 shrink-0"
-                            >
-                                <Close size={14} />
-                            </button>
-                        )}
-                    </div>
-                </div>
+            <div className="flex gap-2 items-start">
+                <Input
+                    className="flex-1"
+                    icon={<Search size={16} />}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="레시피, 재료, 작성자 검색..."
+                />
 
-                <div className="relative shrink-0">
-                    <Button
-                        variant="outline"
-                        size="md"
-                        onClick={() => setFilterOpen((o) => !o)}
-                        className={activeFilters.length > 0 ? "border-primary-400 text-primary-600" : ""}
-                    >
-                        <Filter size={14} />
-                        <span className="hidden sm:inline">필터</span>
-                        {activeFilters.length > 0 && (
-                            <span className="inline-flex items-center justify-center w-4 h-4 bg-primary-500 text-white text-[10px] font-bold rounded-full">
-                                {activeFilters.length}
-                            </span>
-                        )}
-                    </Button>
-
-                    {filterOpen && (
-                        <div className="absolute right-0 top-full mt-2 z-20 bg-white border border-gray-200 rounded-card shadow-lg p-4 w-72">
-                            {FILTER_OPTIONS.map(({ group, label, options }) => (
-                                <div key={group} className="mb-4 last:mb-0">
-                                    <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2">
-                                        {label}
-                                    </p>
-                                    <div className="flex flex-wrap gap-1.5">
-                                        {options.map(({ label: optLabel, value }) => (
-                                            <Chip
-                                                key={value}
-                                                variant={isActive(group, value) ? "brand" : "outline"}
-                                                onClick={() => toggleFilter(group, optLabel, value)}
-                                            >
-                                                {optLabel}
-                                            </Chip>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
+                <DropdownMenu>
+                    <DropdownMenuTrigger>
+                        <Button
+                            variant="outline"
+                            size="md"
+                            className={activeFilters.length > 0 ? "border-primary-400 text-primary-600" : ""}
+                        >
+                            <Filter size={14} />
+                            <span className="hidden sm:inline">필터</span>
                             {activeFilters.length > 0 && (
-                                <>
-                                    <div className="h-px bg-gray-100 my-3" />
-                                    <button
-                                        onClick={() => { clearAll(); setFilterOpen(false); }}
-                                        className="w-full text-xs text-gray-400 hover:text-gray-600 text-center py-1"
-                                    >
-                                        전체 초기화
-                                    </button>
-                                </>
+                                <span className="inline-flex items-center justify-center w-4 h-4 bg-primary-500 text-white text-[10px] font-bold rounded-full">
+                                    {activeFilters.length}
+                                </span>
                             )}
-                        </div>
-                    )}
-                </div>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-52">
+                        {FILTER_OPTIONS.map(({ group, label, options }) => (
+                            <div key={group}>
+                                <DropdownMenuLabel>{label}</DropdownMenuLabel>
+                                <div className="flex flex-wrap gap-x-1.5 gap-y-1 px-3 pb-2 mt-1">
+                                    {options.flatMap(({ label: optLabel, value }, chipIdx) => [
+                                        group === "category" && chipIdx === 3
+                                            ? <div key="break" className="w-full" />
+                                            : null,
+                                        <Chip
+                                            key={value}
+                                            variant={isActive(group, value) ? "brand" : "outline"}
+                                            onClick={() => toggleFilter(group, optLabel, value)}
+                                        >
+                                            {optLabel}
+                                        </Chip>,
+                                    ])}
+                                </div>
+                            </div>
+                        ))}
+                        {activeFilters.length > 0 && (
+                            <div>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem onSelect={clearAll} className="justify-center text-xs">
+                                    전체 초기화
+                                </DropdownMenuItem>
+                            </div>
+                        )}
+                    </DropdownMenuContent>
+                </DropdownMenu>
             </div>
 
             {/* 적용된 필터 칩 */}
