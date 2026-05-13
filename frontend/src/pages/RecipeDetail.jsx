@@ -144,7 +144,7 @@ const StepRow = ({ index, children }) => (
 );
 
 const VideoCard = ({ video }) => (
-    <div className="overflow-hidden rounded-btn border border-gray-200 bg-white">
+    <Card className="gap-0 overflow-hidden rounded-btn p-0">
         <div className="relative">
             <PhotoPlaceholder label="youtube" tone="soft" className="h-32 w-full md:h-36" />
             <div className="absolute inset-0 flex items-center justify-center">
@@ -160,7 +160,7 @@ const VideoCard = ({ video }) => (
             <p className="line-clamp-2 text-sm font-bold leading-snug text-gray-900">{video.title}</p>
             <span className="text-xs font-medium text-gray-500">{video.channel} · {video.views}</span>
         </div>
-    </div>
+    </Card>
 );
 
 function buildRecipe(id) {
@@ -191,7 +191,7 @@ export default function RecipeDetail() {
 
     if (!recipe) {
         return (
-            <div className="rounded-card border border-gray-200 bg-gray-50 px-4 py-10 md:px-6 md:py-14">
+            <Card variant="muted" className="min-h-[calc(100dvh-8.5rem)] justify-center px-4 py-10 md:min-h-[28rem] md:px-6 md:py-14">
                 <EmptyState
                     icon="🍽️"
                     title="레시피를 찾을 수 없어요"
@@ -199,11 +199,12 @@ export default function RecipeDetail() {
                     action="추천 결과로 돌아가기"
                     onAction={() => navigate("/recipes")}
                 />
-            </div>
+            </Card>
         );
     }
 
     const ownedIngredients = recipe.ingredients.filter((ingredient) => ingredient.status === "owned").length;
+    const ingredientsMeta = `${ownedIngredients}/${recipe.ingredients.length} 보유`;
     const handleStartCooking = () => {
         stepsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     };
@@ -231,11 +232,11 @@ export default function RecipeDetail() {
                 </Button>
             </div>
 
-            <div className="grid gap-7 md:grid-cols-[minmax(0,1fr)_21.25rem] md:items-start md:gap-10">
-                <article className="flex flex-col gap-6 rounded-t-[1.5rem] bg-white px-5 pb-28 pt-5 shadow-xl -mt-7 md:mt-0 md:rounded-none md:px-0 md:pb-0 md:pt-0 md:shadow-none">
+            <div className="relative z-10 -mt-8 grid gap-7 md:mt-0 md:grid-cols-[minmax(0,1fr)_21.25rem] md:items-start md:gap-10">
+                <article className="flex flex-col gap-6 rounded-t-[2rem] bg-white px-5 pb-28 pt-8 shadow-xl md:rounded-none md:px-0 md:pb-0 md:pt-0 md:shadow-none">
                     <section className="flex flex-col gap-4 md:gap-5">
                         <div className="flex flex-col gap-3">
-                            <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-gray-900 md:text-6xl">
+                            <h1 className="text-3xl font-extrabold leading-[1.18] tracking-tight text-gray-900 md:text-6xl">
                                 {recipe.title}
                             </h1>
                             <p className="max-w-3xl text-sm leading-relaxed text-gray-600 md:text-base">
@@ -256,7 +257,7 @@ export default function RecipeDetail() {
                     </section>
 
                     <section className="flex flex-col gap-3 md:hidden">
-                        <SectionTitle meta={`· ${recipe.ingredients.length}`}>재료</SectionTitle>
+                        <SectionTitle meta={ingredientsMeta}>재료</SectionTitle>
                         <div className="flex flex-col gap-1.5">
                             {recipe.ingredients.map((ingredient) => (
                                 <IngredientRow key={ingredient.name} ingredient={ingredient} />
@@ -274,15 +275,7 @@ export default function RecipeDetail() {
                     </section>
 
                     <section className="flex flex-col gap-3">
-                        <SectionTitle
-                            action={(
-                                <Button variant="ghost" size="sm" className="hidden text-primary-500 md:inline-flex">
-                                    유튜브에서 더 보기 <ArrowRight size={14} />
-                                </Button>
-                            )}
-                        >
-                            관련 영상
-                        </SectionTitle>
+                        <SectionTitle>관련 영상</SectionTitle>
                         <div className="grid gap-3 md:grid-cols-3">
                             {recipe.videos.map((video) => (
                                 <VideoCard key={video.title} video={video} />
@@ -300,7 +293,7 @@ export default function RecipeDetail() {
                             <RecipeStat label="인분" value={recipe.servings} Icon={UserMultiple} />
                         </div>
                         <div className="flex flex-col gap-2">
-                            <SectionTitle meta={`${recipe.ingredients.length} / ${ownedIngredients} 보유`}>재료</SectionTitle>
+                            <SectionTitle meta={ingredientsMeta}>재료</SectionTitle>
                             <div className="flex flex-col gap-1.5">
                                 {recipe.ingredients.map((ingredient) => (
                                     <IngredientRow key={ingredient.name} ingredient={ingredient} />
@@ -326,15 +319,15 @@ export default function RecipeDetail() {
             </div>
 
             <div className="sticky bottom-0 z-20 -mx-0 flex gap-2 border-t border-gray-200 bg-white/95 px-4 py-3 shadow-xl md:hidden">
+                <Button variant="primary" size="lg" className="flex-1" onClick={handleStartCooking}>
+                    요리 시작
+                    <ArrowRight size={16} />
+                </Button>
                 <Button variant="outline" size="lg" className="px-4" aria-label="저장">
                     <Favorite size={18} />
                 </Button>
                 <Button variant="outline" size="lg" className="px-4" aria-label="공유">
                     <Share size={18} />
-                </Button>
-                <Button variant="primary" size="lg" className="flex-1" onClick={handleStartCooking}>
-                    요리 시작
-                    <ArrowRight size={16} />
                 </Button>
             </div>
         </div>
