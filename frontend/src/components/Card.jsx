@@ -1,5 +1,7 @@
-import { Favorite, Chat, SkillLevelBasic, Time, UserMultiple } from "@carbon/icons-react";
+import { useState } from "react";
+import { Favorite, FavoriteFilled, SkillLevelBasic, Time, Category, UserMultiple } from "@carbon/icons-react";
 import { Chip } from "@/components/Chip.jsx";
+import { Avatar } from "@/components/Avatar.jsx";
 
 const cardVariants = {
     default: "bg-white border-gray-200",
@@ -77,46 +79,42 @@ export function RecipeCard({
     );
 }
 
-export function FeedCard({ title, tags = [], likes, comments, author, image, onClick, className = "" }) {
+export function FeedCard({ title, time, category, difficulty, image, author, likes, onClick, className = "" }) {
+    const [liked, setLiked] = useState(false);
+
     return (
         <div
             onClick={onClick}
             className={[
-                "p-4 bg-white border border-gray-200 rounded-card flex gap-3",
-                onClick ? "cursor-pointer hover:bg-gray-50 transition-colors" : "",
+                "bg-white border border-gray-200 rounded-card overflow-hidden cursor-pointer hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col",
                 className,
             ].join(" ")}
         >
-            {image
-                ? <img src={image} alt={title} className="w-20 h-20 object-cover rounded-lg shrink-0" />
-                : <PhotoPlaceholder className="w-20 h-20 shrink-0" />
-            }
-            <div className="flex flex-col gap-1.5 min-w-0">
-                <p className="text-base font-semibold text-gray-900 truncate">{title}</p>
-                {tags.length > 0 && (
-                    <div className="flex gap-1.5 flex-wrap">
-                        {tags.map((tag) => (
-                            <Chip key={tag} variant="brand-soft">{tag}</Chip>
-                        ))}
-                    </div>
-                )}
-                {author && (
-                    <span className="text-sm text-gray-600 font-medium truncate">@{author}</span>
-                )}
-                {(likes != null || comments != null) && (
-                    <div className="flex items-center gap-3 text-xs text-gray-400">
-                        {likes != null && (
-                            <span className="flex items-center gap-1">
-                                <Favorite size={12} /> {likes}
-                            </span>
-                        )}
-                        {comments != null && (
-                            <span className="flex items-center gap-1">
-                                <Chat size={12} /> {comments}
-                            </span>
-                        )}
-                    </div>
-                )}
+            <div className="relative w-full h-28 lg:h-40">
+                {image
+                    ? <img src={image} alt={title} className="w-full h-full object-cover" />
+                    : <PhotoPlaceholder className="w-full h-full rounded-none" />
+                }
+                <button
+                    onClick={(e) => { e.stopPropagation(); setLiked((v) => !v); }}
+                    className="absolute top-2 right-2 flex items-center gap-1 px-2 py-1 rounded-full bg-white/75 backdrop-blur-sm text-xs transition-colors"
+                    style={{ color: liked ? "#e0682e" : "#8c8170" }}
+                >
+                    {liked ? <FavoriteFilled size={12} /> : <Favorite size={12} />}
+                    <span className={liked ? "font-semibold" : ""}>{likes + (liked ? 1 : 0)}</span>
+                </button>
+            </div>
+            <div className="flex flex-col gap-2.5 p-2.5 lg:p-4 flex-1">
+                <p className="text-base font-semibold text-gray-900 leading-snug line-clamp-2">{title}</p>
+                <div className="flex gap-1 flex-wrap">
+                    {time && <Chip variant="neutral"><Time size={11} />{time}</Chip>}
+                    {category && <Chip variant="neutral"><Category size={11} />{category}</Chip>}
+                    {difficulty && <Chip variant="neutral"><SkillLevelBasic size={11} />{difficulty}</Chip>}
+                </div>
+                <div className="flex items-center gap-1.5 mt-auto pt-1">
+                    <Avatar name={author} size="sm" />
+                    <span className="text-xs text-gray-500 font-medium truncate">@{author}</span>
+                </div>
             </div>
         </div>
     );

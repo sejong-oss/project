@@ -61,8 +61,10 @@ export const RecipeCards = () => (
 );
 
 export const FeedCards = () => (
-    <div className="p-8 bg-white font-sans flex flex-col gap-3 max-w-sm">
-        <FeedCard title="직접 만든 두부 간장조림" author="모카" tags={["한식", "쉬움"]} likes={24} comments={3} />
-        <FeedCard title="냉장고 털기 볶음밥" author="밥먹자" tags={["한식", "30분"]} likes={12} comments={1} />
+    <div className="p-8 bg-white font-sans grid grid-cols-2 gap-3 max-w-xl">
+        <FeedCard title="직접 만든 두부 간장조림" time="20분" category="한식" difficulty="쉬움" author="모카" likes={24} />
+        <FeedCard title="냉장고 털기 볶음밥" time="15분" category="한식" difficulty="쉬움" author="밥먹자" likes={12} />
+        <FeedCard title="알리오올리오" time="25분" category="양식" difficulty="보통" author="파스타러버" likes={38} />
+        <FeedCard title="계란말이" time="12분" category="한식" difficulty="쉬움" author="고동그라미" likes={57} />
     </div>
 );
