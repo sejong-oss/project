@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Search, Settings, User, Logout, TrashCan, Share } from "@carbon/icons-react";
 import {
     Button, Chip, Input, TagInput,
-    RecipeCard, FeedCard,
+    Card, RecipeCard, FeedCard,
     Avatar, CardSkeleton, FeedSkeleton,
     Toast, ProgressBar, TopNav, BottomTabBar, Breadcrumb, EmptyState,
     Select, SelectItem, SelectGroup, SelectSeparator,
@@ -230,10 +230,30 @@ export const DesignSystem = () => {
 
                 {/* Cards */}
                 <Section title="Cards">
-                    <div className="grid grid-cols-3 gap-4">
-                        <RecipeCard variant="hero" title="두부 간장조림" description="냉장고 재료 그대로 만드는 짭조름한 한 그릇" time="20분" difficulty="쉬움" servings="2인분" />
-                        <RecipeCard title="두부 계란말이" description="계란과 두부로 부드럽게 말아내는 반찬" time="15분" difficulty="쉬움" servings="1인분" />
-                        <RecipeCard title="파 계란국" description="대파 향을 살린 따뜻하고 가벼운 국물" time="10분" difficulty="쉬움" servings="2인분" />
+                    <div className="flex flex-col gap-3 mb-6">
+                        <p className="text-[10px] font-semibold tracking-widest text-gray-400 uppercase">Base Card Variants</p>
+                        <div className="grid grid-cols-3 gap-4">
+                            <Card>
+                                <p className="text-base font-semibold text-gray-900">Default</p>
+                                <p className="text-sm leading-relaxed text-gray-600">기본 카드 컨테이너</p>
+                            </Card>
+                            <Card variant="hero">
+                                <p className="text-base font-semibold text-gray-900">Hero</p>
+                                <p className="text-sm leading-relaxed text-gray-600">강조 카드 컨테이너</p>
+                            </Card>
+                            <Card variant="muted">
+                                <p className="text-base font-semibold text-gray-900">Muted</p>
+                                <p className="text-sm leading-relaxed text-gray-600">보조 카드 컨테이너</p>
+                            </Card>
+                        </div>
+                    </div>
+                    <div className="flex flex-col gap-3">
+                        <p className="text-[10px] font-semibold tracking-widest text-gray-400 uppercase">Recipe Cards</p>
+                        <div className="grid grid-cols-3 gap-4">
+                            <RecipeCard variant="hero" title="두부 간장조림" description="냉장고 재료 그대로 만드는 짭조름한 한 그릇" time="20분" difficulty="쉬움" servings="2인분" />
+                            <RecipeCard title="두부 계란말이" description="계란과 두부로 부드럽게 말아내는 반찬" time="15분" difficulty="쉬움" servings="1인분" />
+                            <RecipeCard variant="muted" title="파 계란국" description="대파 향을 살린 따뜻하고 가벼운 국물" time="10분" difficulty="쉬움" servings="2인분" />
+                        </div>
                     </div>
                     <div className="mt-4 max-w-sm">
                         <FeedCard title="직접 만든 두부 간장조림" author="모카" tags={["한식", "쉬움"]} likes={24} comments={3} />
