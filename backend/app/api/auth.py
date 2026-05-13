@@ -1,4 +1,4 @@
-from fastapi import APIRouter, status
+from fastapi import APIRouter, Request, status
 
 from app.api.auth_schemas import (
     LoginRequest,
@@ -26,10 +26,15 @@ async def signup(payload: SignupRequest) -> SignupResponse:
     response_model=LoginResponse,
     summary="로그인 및 세션 생성",
 )
-async def login(payload: LoginRequest) -> LoginResponse:
+async def login(payload: LoginRequest, request: Request) -> LoginResponse:
+    user_id = "placeholder-user-id"
+    nickname = "placeholder-nickname"
+    request.session["user_id"] = user_id
+    request.session["nickname"] = nickname
+
     return LoginResponse(
-        user_id="placeholder-user-id",
-        nickname="placeholder-nickname",
+        user_id=user_id,
+        nickname=nickname,
         session_active=True,
     )
 
@@ -39,8 +44,10 @@ async def login(payload: LoginRequest) -> LoginResponse:
     response_model=SessionRefreshResponse,
     summary="세션 상태 확인 및 갱신",
 )
-async def refresh_session() -> SessionRefreshResponse:
+async def refresh_session(request: Request) -> SessionRefreshResponse:
+    session_active = "user_id" in request.session
+
     return SessionRefreshResponse(
-        session_active=True,
-        expires_at="2026-05-13T00:00:00Z",
+        session_active=session_active,
+        expires_at="2026-05-13T00:00:00Z" if session_active else None,
     )
