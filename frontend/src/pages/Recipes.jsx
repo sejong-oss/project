@@ -120,22 +120,22 @@ export default function Recipes() {
                                 <Chip variant="outline">{HERO.servings}</Chip>
                             </div>
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex flex-wrap gap-2">
                             <Button
                                 variant="primary"
                                 size="lg"
-                                className="min-w-0 flex-1 whitespace-nowrap md:flex-none"
+                                className="min-w-36 flex-1 lg:flex-none"
                                 onClick={() => navigate(`/recipes/${HERO.id}`)}
                             >
                                 레시피 보기
                                 <ArrowRight size={16} />
                             </Button>
-                            <div className="flex gap-2">
-                                <Button variant="outline" size="lg" className="px-4 md:px-5" aria-label="저장">
+                            <div className="flex flex-1 gap-2 lg:flex-none">
+                                <Button variant="outline" size="lg" className="flex-1 px-4 md:px-5 lg:flex-none" aria-label="저장">
                                     <Favorite size={18} />
                                     <span className="hidden md:inline">저장</span>
                                 </Button>
-                                <Button variant="outline" size="lg" className="px-4 md:px-5" aria-label="공유">
+                                <Button variant="outline" size="lg" className="flex-1 px-4 md:px-5 lg:flex-none" aria-label="공유">
                                     <Share size={18} />
                                     <span className="hidden md:inline">공유</span>
                                 </Button>
