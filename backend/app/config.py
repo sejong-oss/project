@@ -13,3 +13,7 @@ YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY", "")
 RECIPE_COUNT = int(os.getenv("RECIPE_COUNT", "3"))
 
 DATABASE_URL = os.getenv("DATABASE_URL", "")
+
+SESSION_SECRET_KEY = os.getenv(
+    "SESSION_SECRET_KEY", "placeholder-session-secret-key"
+)
