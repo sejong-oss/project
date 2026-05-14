@@ -86,7 +86,6 @@ export default function Home() {
     <div className="-mx-4 -my-6 md:mx-0 md:my-0 flex flex-col min-h-[calc(100dvh-4.5rem)] md:min-h-[calc(100dvh-5.5rem)]">
       <div className="flex-1 flex flex-col gap-6 px-4 md:px-0 py-10 md:py-6">
 
-      {/* 헤더 */}
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
           오늘은 <span className="text-primary-500">뭐</span> 해먹지?
@@ -99,8 +98,7 @@ export default function Home() {
         </p>
       </div>
 
-      {/* 태그 입력 영역 */}
-      <div className="relative mt-1">
+      <div className="mt-1">
         <div
           onClick={() => inputRef.current?.focus()}
           className={[
@@ -126,7 +124,6 @@ export default function Home() {
           />
         </div>
 
-        {/* 자동완성 (모바일/데스크탑 공통 인라인) */}
         {suggestions.length > 0 && (
           <div className="-mt-1 bg-white border border-gray-200 rounded-b-xl md:rounded-b-card overflow-hidden shadow-md md:shadow-xl">
             {suggestions.map((item, i) => {
@@ -167,7 +164,6 @@ export default function Home() {
         )}
       </div>
 
-      {/* 빠른 추가 섹션 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-20 mt-2">
         <div className="flex flex-col gap-4">
           <div className="flex items-baseline justify-between gap-2">
