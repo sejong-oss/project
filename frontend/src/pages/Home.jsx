@@ -199,7 +199,7 @@ export default function Home() {
       </div>
 
       </div>
-      <div className="sticky bottom-0 z-20 flex items-center gap-2 md:justify-end border-t border-gray-200 md:border-t-0 bg-white/95 px-4 md:px-0 py-3 shadow-xl md:shadow-none">
+      <div className="sticky bottom-0 z-20 flex items-center gap-2 md:justify-end border-t border-gray-200 md:border-t-0 bg-white/95 px-4 md:px-0 py-3 md:pb-8 shadow-xl md:shadow-none">
         <Button
           variant="outline"
           size="lg"
