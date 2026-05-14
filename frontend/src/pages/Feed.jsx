@@ -106,9 +106,9 @@ export default function Feed() {
             </div>
 
             {/* 검색바 + 필터 버튼 */}
-            <div className="flex gap-2 items-start">
+            <div className="flex gap-2 items-center">
                 <Input
-                    className="flex-1"
+                    className="flex-1 [&>div]:h-11"
                     icon={<Search size={16} />}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -120,7 +120,7 @@ export default function Feed() {
                         <Button
                             variant="outline"
                             size="md"
-                            className={activeFilters.length > 0 ? "border-primary-400 text-primary-600" : ""}
+                            className={`!h-11 ${activeFilters.length > 0 ? "border-primary-400 text-primary-600" : ""}`}
                         >
                             <Filter size={14} />
                             <span className="hidden sm:inline">필터</span>
