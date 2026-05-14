@@ -266,7 +266,7 @@ export default function RecipeDetail() {
                     </section>
 
                     <section ref={stepsRef} className="scroll-mt-6 flex flex-col gap-2 md:scroll-mt-24">
-                        <SectionTitle meta={`${recipe.steps.length} STEPS · ${recipe.time}`}>조리법</SectionTitle>
+                        <SectionTitle meta={`${recipe.steps.length} STEPS`}>조리법</SectionTitle>
                         <div className="flex flex-col">
                             {recipe.steps.map((step, index) => (
                                 <StepRow key={step} index={index + 1}>{step}</StepRow>
@@ -285,7 +285,7 @@ export default function RecipeDetail() {
                 </article>
 
                 <aside className="hidden md:sticky md:top-6 md:flex md:flex-col md:gap-4">
-                    <Card className="gap-5 p-5 shadow-lg">
+                    <Card className="gap-5 p-5 shadow-md">
                         <SectionTitle>요리 정보</SectionTitle>
                         <div className="flex gap-2">
                             <RecipeStat label="시간" value={recipe.time} Icon={Time} />
