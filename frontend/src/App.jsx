@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import { ToasterProvider } from "@/components/ToasterProvider.jsx";
 import AppLayout from "@/layouts/AppLayout.jsx";
+import OnboardingLayout from "@/layouts/OnboardingLayout.jsx";
 import Onboarding from "@/pages/Onboarding.jsx";
 import Home from "@/pages/Home.jsx";
 import Recipes from "@/pages/Recipes.jsx";
@@ -11,7 +12,13 @@ import FeedWrite from "@/pages/FeedWrite.jsx";
 import My from "@/pages/My.jsx";
 
 const router = createBrowserRouter([
-    { path: "/", element: <Onboarding /> },
+    {
+        path: "/",
+        element: <OnboardingLayout />,
+        children: [
+            { index: true, element: <Onboarding /> },
+        ],
+    },
     {
         element: <AppLayout />,
         children: [

@@ -23,32 +23,48 @@ const DROPDOWN_ITEMS = [
     { label: "설정", to: "/my/settings" },
 ];
 
-export function TopNav({ user, className = "" }) {
+export function TopNav({
+    user,
+    onLoginClick,
+    className = "",
+    variant = "default",
+    showItems = true,
+    showAuth = true,
+    logoTo = "/home",
+}) {
     const navigate = useNavigate();
+    const isTransparent = variant === "transparent";
 
     return (
-        <header className={`border-b border-gray-200 bg-white ${className}`}>
-            <Container className="flex items-center gap-7 py-3.5">
-                <NavLink to="/home" className="shrink-0 text-xl font-black tracking-tight text-gray-900 leading-none">
+        <header className={[
+            "border-b",
+            isTransparent ? "border-transparent bg-transparent" : "border-gray-200 bg-white",
+            className,
+        ].join(" ")}>
+            <Container className="flex min-h-16 items-center gap-7">
+                <NavLink to={logoTo} className="flex items-center self-stretch shrink-0 text-xl font-black tracking-tight text-gray-900 leading-none">
                     {SITE_NAME}<span className="text-primary-500">.</span>
                 </NavLink>
-                <nav className="flex gap-6 flex-1">
-                    {NAV_ITEMS.map(({ key, label, to }) => (
-                        <NavLink
-                            key={key}
-                            to={to}
-                            className={({ isActive }) => [
-                                "text-sm font-medium pb-px relative",
-                                isActive
-                                    ? "text-gray-900 after:absolute after:left-0 after:right-0 after:-bottom-3.75 after:h-0.5 after:bg-primary-500 after:rounded-sm"
-                                    : "text-gray-500 hover:text-gray-700",
-                            ].join(" ")}
-                        >
-                            {label}
-                        </NavLink>
-                    ))}
-                </nav>
-                {user ? (
+                {showItems && (
+                    <nav className="flex self-stretch gap-6 flex-1">
+                        {NAV_ITEMS.map(({ key, label, to }) => (
+                            <NavLink
+                                key={key}
+                                to={to}
+                                className={({ isActive }) => [
+                                    "relative flex items-center text-sm font-medium",
+                                    isActive
+                                        ? "text-gray-900 after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-primary-500 after:rounded-sm"
+                                        : "text-gray-500 hover:text-gray-700",
+                                ].join(" ")}
+                            >
+                                {label}
+                            </NavLink>
+                        ))}
+                    </nav>
+                )}
+                {!showItems && <div className="flex-1" />}
+                {showAuth && user ? (
                     <DropdownMenu>
                         <DropdownMenuTrigger>
                             <button className="flex items-center gap-2 px-2.5 py-1.5 rounded-full border border-gray-200 hover:border-gray-300 cursor-pointer shrink-0">
@@ -67,11 +83,11 @@ export function TopNav({ user, className = "" }) {
                             <DropdownMenuDangerItem>로그아웃</DropdownMenuDangerItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
-                ) : (
-                    <Button variant="ghost" size="sm" onClick={() => navigate("/login")} className="shrink-0">
+                ) : showAuth ? (
+                    <Button variant="ghost" size="sm" onClick={onLoginClick} className="shrink-0">
                         로그인
                     </Button>
-                )}
+                ) : null}
             </Container>
         </header>
     );

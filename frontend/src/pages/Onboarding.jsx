@@ -1,4 +1,5 @@
 import { useId, useLayoutEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { Button, Chip, Container } from "@/components/index.js";
 import { SITE_NAME } from "@/lib/constants.js";
@@ -202,10 +203,13 @@ const FlowPreview = () => {
 };
 
 export default function Onboarding() {
+    const navigate = useNavigate();
+    const goHome = () => navigate("/home");
+
     return (
-        <div className="min-h-screen bg-gray-50 font-sans">
+        <>
             <title>{SITE_NAME}</title>
-            <Container className="min-h-screen flex flex-col lg:flex-row">
+            <Container className="relative min-h-screen flex flex-col lg:flex-row">
 
                 <div className="relative flex-1 flex flex-col items-center justify-center overflow-hidden lg:overflow-visible lg:items-start lg:justify-center lg:px-16 lg:py-0 lg:flex-1">
 
@@ -221,9 +225,6 @@ export default function Onboarding() {
                     />
 
                     <div className="relative z-2 flex flex-col items-center text-center gap-5 px-7 py-8 lg:items-start lg:text-left lg:p-0">
-                        <p className="text-xs font-semibold tracking-widest text-gray-500 uppercase">
-                            {SITE_NAME}
-                        </p>
                         <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-gray-900 leading-none">
                             오늘은 <span className="text-primary-500">뭐</span> 해먹지?
                         </h1>
@@ -232,7 +233,7 @@ export default function Onboarding() {
                             요리 조합과 유튜브 영상까지 함께 추천해드려요.
                         </p>
                         <div className="hidden lg:flex flex-col gap-5">
-                            <Button variant="primary" size="lg" className="w-fit">
+                            <Button variant="primary" size="lg" className="w-fit" onClick={goHome}>
                                 재료 담으면서 시작하기 →
                             </Button>
                             <div className="flex gap-6 text-xs text-gray-500">
@@ -259,7 +260,7 @@ export default function Onboarding() {
                 </div>
 
                 <div className="px-7 pb-12 flex flex-col gap-3 lg:hidden">
-                    <Button variant="primary" size="lg" fullWidth>
+                    <Button variant="primary" size="lg" fullWidth onClick={goHome}>
                         재료 담으면서 시작하기 →
                     </Button>
                     <p className="text-sm text-gray-500 text-center">
@@ -269,6 +270,6 @@ export default function Onboarding() {
                 </div>
 
             </Container>
-        </div>
+        </>
     );
 }

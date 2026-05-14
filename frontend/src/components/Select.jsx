@@ -14,7 +14,7 @@ export function Select({ value, onValueChange, placeholder = "선택", disabled,
             <RadixSelect.Trigger
                 className={[
                     "inline-flex items-center justify-between rounded-input border border-gray-300 bg-gray-50",
-                    "text-gray-900 font-medium font-sans cursor-pointer select-none",
+                    "text-gray-900 font-medium cursor-pointer select-none",
                     "hover:border-gray-400 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20",
                     "disabled:opacity-50 disabled:cursor-not-allowed",
                     "data-placeholder:text-gray-500",

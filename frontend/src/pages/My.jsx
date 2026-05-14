@@ -1,3 +1,19 @@
+import { useOutletContext } from "react-router-dom";
+import { UserAvatar } from "@carbon/icons-react";
+import { EmptyState } from "@/components/index.js";
+
 export default function My() {
-    return <div>MY</div>;
+    const { openLoginModal } = useOutletContext();
+
+    return (
+        <div className="min-h-[calc(100dvh-10rem)] flex items-center justify-center">
+            <EmptyState
+                icon={<UserAvatar size={28} />}
+                title="로그인이 필요해요"
+                description="로그인을 통해 레시피 저장과 공유 기능을 사용해보세요."
+                action="로그인"
+                onAction={openLoginModal}
+            />
+        </div>
+    );
 }
