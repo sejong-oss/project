@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Chip } from "@/components";
-import { ArrowRight } from "@carbon/icons-react";
+import { ArrowRight, CheckmarkFilled } from "@carbon/icons-react";
 
 const COMMON_INGREDIENTS = [
     "마늘", "양파", "계란", "대파", "감자", "당근", "두부", "간장", "김치", "우유", "치즈", "쌀",
@@ -164,7 +164,7 @@ export default function Home() {
                     )}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-20 mt-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-16 mt-2">
                     <div className="flex flex-col gap-4">
                         <div className="flex items-baseline justify-between gap-2">
                             <h3 className="text-lg font-bold tracking-tight text-gray-900">자주 쓰는 재료</h3>
@@ -172,27 +172,33 @@ export default function Home() {
               전체 보기
                             </span>
                         </div>
-                        <div className="flex flex-wrap gap-1.5">
+                        <div className="bg-gray-50 rounded-xl p-4 flex flex-wrap gap-1.5">
                             {COMMON_INGREDIENTS.filter((i) => !ingredients.includes(i)).map((item) => (
                                 <Chip key={item} variant="outline" onClick={() => addIngredient(item)} className="!px-4 !py-2 !text-sm">
                 + {item}
                                 </Chip>
                             ))}
                             {COMMON_INGREDIENTS.every((i) => ingredients.includes(i)) && (
-                                <p className="text-sm text-gray-600 mt-1">재료를 모두 추가했어요.</p>
+                                <div className="w-full flex flex-col items-center gap-1.5 py-3 text-center">
+                                    <CheckmarkFilled size={24} className="text-primary-400" />
+                                    <p className="text-sm text-gray-600">재료를 모두 추가했어요.</p>
+                                </div>
                             )}
                         </div>
                     </div>
                     <div className="flex flex-col gap-4">
                         <h3 className="text-lg font-bold tracking-tight text-gray-900">최근 입력 재료</h3>
-                        <div className="flex flex-wrap gap-1.5">
+                        <div className="bg-gray-50 rounded-xl p-4 flex flex-wrap gap-1.5">
                             {RECENT_INGREDIENTS.filter((i) => !ingredients.includes(i)).map((item) => (
                                 <Chip key={item} variant="dashed" onClick={() => addIngredient(item)} className="!px-4 !py-2 !text-sm">
                 + {item}
                                 </Chip>
                             ))}
                             {RECENT_INGREDIENTS.every((i) => ingredients.includes(i)) && (
-                                <p className="text-sm text-gray-600 mt-1">재료를 모두 추가했어요.</p>
+                                <div className="w-full flex flex-col items-center gap-1.5 py-3 text-center">
+                                    <CheckmarkFilled size={24} className="text-primary-400" />
+                                    <p className="text-sm text-gray-600">재료를 모두 추가했어요.</p>
+                                </div>
                             )}
                         </div>
                     </div>
