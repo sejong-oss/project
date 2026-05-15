@@ -125,7 +125,7 @@ export default function Home() {
                     </div>
 
                     {suggestions.length > 0 && (
-                        <div className="-mt-1 bg-white border border-gray-200 rounded-b-xl md:rounded-b-card overflow-hidden shadow-md md:shadow-xl">
+                        <div className="mt-1 bg-white border border-gray-200 rounded-card overflow-hidden shadow-lg">
                             {suggestions.map((item, i) => {
                                 const matchLen = query.trim().length;
                                 const isHighlighted = i === highlightIdx;
@@ -152,10 +152,7 @@ export default function Home() {
                                             {item.slice(matchLen)}
                                         </span>
                                         {isHighlighted && (
-                                            <span className="text-xs font-semibold text-primary-500 shrink-0 ml-2 hidden md:inline">TAB ↵</span>
-                                        )}
-                                        {isHighlighted && (
-                                            <span className="text-xs font-semibold text-primary-500 shrink-0 ml-2 md:hidden">ENTER ↵</span>
+                                            <span className="text-xs font-semibold text-primary-500 shrink-0 ml-2">ENTER ↵</span>
                                         )}
                                     </button>
                                 );
