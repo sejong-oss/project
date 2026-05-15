@@ -94,7 +94,7 @@ export default function Home() {
           가진 재료를 알려주세요. 5개 이상이면 좋아요.
                     </p>
                     <p className="hidden md:block text-sm text-gray-600">
-          재료를 입력하면 AI가 가능한 요리 조합을 찾아드려요. 5개 이상이면 더 정확합니다.
+          재료를 입력하면 AI가 가능한 요리 조합을 찾아드려요.
                     </p>
                 </div>
 
@@ -179,12 +179,12 @@ export default function Home() {
                                 </Chip>
                             ))}
                             {COMMON_INGREDIENTS.every((i) => ingredients.includes(i)) && (
-                                <p className="text-xs text-gray-400">모두 추가됐어요</p>
+                                <p className="text-sm text-gray-600 mt-1">재료를 모두 추가했어요.</p>
                             )}
                         </div>
                     </div>
                     <div className="flex flex-col gap-4">
-                        <h3 className="text-lg font-bold tracking-tight text-gray-900">최근 입력</h3>
+                        <h3 className="text-lg font-bold tracking-tight text-gray-900">최근 입력 재료</h3>
                         <div className="flex flex-wrap gap-1.5">
                             {RECENT_INGREDIENTS.filter((i) => !ingredients.includes(i)).map((item) => (
                                 <Chip key={item} variant="dashed" onClick={() => addIngredient(item)} className="!px-4 !py-2 !text-sm">
@@ -192,7 +192,7 @@ export default function Home() {
                                 </Chip>
                             ))}
                             {RECENT_INGREDIENTS.every((i) => ingredients.includes(i)) && (
-                                <p className="text-xs text-gray-400">모두 추가됐어요</p>
+                                <p className="text-sm text-gray-600 mt-1">재료를 모두 추가했어요.</p>
                             )}
                         </div>
                     </div>
