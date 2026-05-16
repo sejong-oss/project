@@ -63,7 +63,7 @@ export default function Home() {
             e.preventDefault();
             setActiveIdx((prev) => Math.max(prev - 1, -1));
         } else if (e.key === "Enter" || e.key === "," || e.key === "Tab") {
-            if (!query.trim()) return;
+            if (!query.trim() || e.nativeEvent.isComposing || e.key === "Process") return;
             e.preventDefault();
             const target =
         activeIdx >= 0 && suggestions[activeIdx]
