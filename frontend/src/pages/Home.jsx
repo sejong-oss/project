@@ -102,7 +102,7 @@ export default function Home() {
                     <div
                         onClick={() => inputRef.current?.focus()}
                         className={[
-                            "min-h-[11rem] flex flex-wrap content-start gap-2 md:gap-2.5",
+                            "flex flex-wrap content-start gap-2 md:gap-2.5",
                             "px-4 py-3 md:p-5",
                             "bg-white border border-gray-200 rounded-card md:rounded-modal cursor-text",
                             "shadow-sm md:shadow-lg",
