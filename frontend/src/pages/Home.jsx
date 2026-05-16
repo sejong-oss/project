@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Chip } from "@/components";
-import { ArrowRight, CheckmarkFilled } from "@carbon/icons-react";
+import { ArrowRight, CheckmarkFilled, Renew } from "@carbon/icons-react";
 
 const COMMON_INGREDIENTS = [
     "마늘", "양파", "계란", "대파", "감자", "당근", "두부", "간장", "김치", "우유", "치즈", "쌀",
@@ -86,79 +86,111 @@ export default function Home() {
         <div className="-mx-4 -my-6 md:mx-0 md:my-0 flex flex-col min-h-[calc(100dvh-4.5rem)] md:min-h-[calc(100dvh-5.5rem)]">
             <div className="flex-1 flex flex-col gap-6 px-4 md:px-0 py-10 md:py-6">
 
-                <div className="flex flex-col gap-4">
-                    <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
-          오늘은 <span className="text-primary-500">뭐</span> 해먹지?
-                    </h1>
-                    <p className="text-sm text-gray-600 md:hidden">
-          가진 재료를 알려주세요. 5개 이상이면 좋아요.
-                    </p>
-                    <p className="hidden md:block text-sm text-gray-600">
-          재료를 입력하면 AI가 가능한 요리 조합을 찾아드려요.
-                    </p>
-                </div>
-
-                <div className="mt-1">
-                    <div
-                        onClick={() => inputRef.current?.focus()}
-                        className={[
-                            "flex flex-wrap content-start gap-2 md:gap-2.5",
-                            "px-4 py-3 md:p-5",
-                            "bg-white border border-gray-200 rounded-card md:rounded-modal cursor-text",
-                            "shadow-sm md:shadow-lg",
-                            "focus-within:border-primary-400 transition-colors duration-150",
-                        ].join(" ")}
-                    >
-                        {ingredients.map((item) => (
-                            <Chip key={item} variant="brand" onRemove={() => removeIngredient(item)} className="!px-4 !py-2 !text-sm !gap-1.5">
-                                {item}
-                            </Chip>
-                        ))}
-                        <input
-                            ref={inputRef}
-                            value={query}
-                            onChange={(e) => setQuery(e.target.value)}
-                            onKeyDown={handleKeyDown}
-                            placeholder={ingredients.length === 0 ? "재료를 입력하세요" : ""}
-                            className="bg-transparent outline-none text-base text-gray-900 placeholder:text-gray-400 min-w-[5rem] flex-1 py-1.5 px-1"
-                        />
-                    </div>
-
-                    {suggestions.length > 0 && (
-                        <div className="mt-1 bg-white border border-gray-200 rounded-card overflow-hidden shadow-lg">
-                            {suggestions.map((item, i) => {
-                                const matchLen = query.trim().length;
-                                const isHighlighted = i === highlightIdx;
-                                return (
-                                    <button
-                                        key={item}
-                                        type="button"
-                                        onMouseDown={(e) => {
-                                            e.preventDefault();
-                                            addIngredient(item);
-                                            inputRef.current?.focus();
-                                        }}
-                                        onMouseEnter={() => setActiveIdx(i)}
-                                        className={[
-                                            "w-full text-left px-3.5 py-2.5 text-sm flex items-center justify-between transition-colors",
-                                            i > 0 ? "border-t border-gray-100" : "",
-                                            isHighlighted ? "bg-primary-100 text-primary-800" : "hover:bg-gray-50 text-gray-900",
-                                        ].join(" ")}
-                                    >
-                                        <span>
-                                            <span className={`font-semibold ${isHighlighted ? "text-primary-600" : "text-primary-500"}`}>
-                                                {item.slice(0, matchLen)}
-                                            </span>
-                                            {item.slice(matchLen)}
-                                        </span>
-                                        {isHighlighted && (
-                                            <span className="text-xs font-semibold text-primary-500 shrink-0 ml-2">ENTER ↵</span>
-                                        )}
-                                    </button>
-                                );
-                            })}
+                <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-4">
+                        <div className="flex items-center justify-between gap-3 md:block">
+                            <h1 className="min-w-0 text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
+                                오늘은 <span className="text-primary-500">뭐</span> 해먹지?
+                            </h1>
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                disabled={ingredients.length === 0}
+                                onClick={() => { setIngredients([]); setQuery(""); }}
+                                className="shrink-0 md:hidden"
+                            >
+                                <Renew size={14} />
+                                전체 초기화
+                            </Button>
                         </div>
-                    )}
+                        <p className="text-sm text-gray-600">
+                            재료를 입력하면 AI가 가능한 요리 조합을 찾아드려요.
+                        </p>
+                    </div>
+                    <div className="flex flex-col">
+                        <div
+                            className={[
+                                "flex flex-col gap-3",
+                                "px-4 py-3 md:px-5 md:pt-5 md:pb-3",
+                                "bg-white border border-gray-200 rounded-card cursor-text",
+                                "shadow-sm md:shadow-lg",
+                                "focus-within:border-primary-400 transition-colors duration-150",
+                            ].join(" ")}
+                        >
+                            <div
+                                onClick={() => inputRef.current?.focus()}
+                                className="flex flex-wrap content-start gap-2 md:gap-2.5 min-h-[2.5rem]"
+                            >
+                                {ingredients.map((item) => (
+                                    <Chip key={item} variant="brand" onRemove={() => removeIngredient(item)} className="!px-4 !py-2 !text-sm !gap-1.5">
+                                        {item}
+                                    </Chip>
+                                ))}
+                                <input
+                                    ref={inputRef}
+                                    value={query}
+                                    onChange={(e) => setQuery(e.target.value)}
+                                    onKeyDown={handleKeyDown}
+                                    placeholder={ingredients.length === 0 ? "재료를 입력하세요" : ""}
+                                    className="bg-transparent outline-none text-base text-gray-900 placeholder:text-gray-400 min-w-[2rem] flex-1 py-1.5 px-1"
+                                />
+                            </div>
+                            <div className="hidden md:flex items-center justify-between gap-2 pt-3 border-t border-gray-100">
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    disabled={ingredients.length === 0}
+                                    onClick={() => { setIngredients([]); setQuery(""); }}
+                                >
+                                    전체 초기화
+                                </Button>
+                                <Button
+                                    variant="primary"
+                                    size="lg"
+                                    disabled={ingredients.length === 0}
+                                    onClick={() => navigate("/recipes", { state: { ingredients } })}
+                                >
+                                    레시피 추천 받기
+                                    <ArrowRight size={16} />
+                                </Button>
+                            </div>
+                        </div>
+                        {suggestions.length > 0 && (
+                            <div className="mt-1 bg-white border border-gray-200 rounded-card overflow-hidden shadow-lg">
+                                {suggestions.map((item, i) => {
+                                    const matchLen = query.trim().length;
+                                    const isHighlighted = i === highlightIdx;
+                                    return (
+                                        <button
+                                            key={item}
+                                            type="button"
+                                            onMouseDown={(e) => {
+                                                e.preventDefault();
+                                                addIngredient(item);
+                                                inputRef.current?.focus();
+                                            }}
+                                            onMouseEnter={() => setActiveIdx(i)}
+                                            className={[
+                                                "w-full text-left px-3.5 py-2.5 text-sm flex items-center justify-between transition-colors",
+                                                i > 0 ? "border-t border-gray-100" : "",
+                                                isHighlighted ? "bg-primary-100 text-primary-800" : "hover:bg-gray-50 text-gray-900",
+                                            ].join(" ")}
+                                        >
+                                            <span>
+                                                <span className={`font-semibold ${isHighlighted ? "text-primary-600" : "text-primary-500"}`}>
+                                                    {item.slice(0, matchLen)}
+                                                </span>
+                                                {item.slice(matchLen)}
+                                            </span>
+                                            {isHighlighted && (
+                                                <span className="text-xs font-semibold text-primary-500 shrink-0 ml-2">ENTER ↵</span>
+                                            )}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-16 mt-2">
@@ -202,23 +234,15 @@ export default function Home() {
                 </div>
 
             </div>
-            <div className="sticky bottom-0 z-20 flex items-center gap-2 md:justify-end border-t border-gray-200 md:border-t-0 bg-white/95 px-4 md:px-0 py-3 md:pb-8 shadow-xl md:shadow-none">
-                <Button
-                    variant="outline"
-                    size="lg"
-                    disabled={ingredients.length === 0}
-                    onClick={() => setIngredients([])}
-                >
-          전체 초기화
-                </Button>
+            <div className="md:hidden sticky bottom-0 z-20 flex items-center gap-2 border-t border-gray-200 bg-white/95 px-4 py-3 shadow-xl">
                 <Button
                     variant="primary"
                     size="lg"
-                    className="flex-1 md:flex-none"
+                    className="flex-1"
                     disabled={ingredients.length === 0}
                     onClick={() => navigate("/recipes", { state: { ingredients } })}
                 >
-          레시피 추천 받기
+                    레시피 추천 받기
                     <ArrowRight size={16} />
                 </Button>
             </div>
