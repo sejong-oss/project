@@ -219,7 +219,7 @@ export const DesignSystem = () => {
                         </TabsContent>
                         <TabsContent value="feed">
                             <div className="max-w-sm">
-                                <FeedCard title="직접 만든 두부 간장조림" author="모카" tags={["한식", "쉬움"]} likes={24} comments={3} />
+                                <FeedCard title="직접 만든 두부 간장조림" time="20분" category="한식" difficulty="쉬움" author="모카" likes={24} />
                             </div>
                         </TabsContent>
                         <TabsContent value="saved">
@@ -256,7 +256,7 @@ export const DesignSystem = () => {
                         </div>
                     </div>
                     <div className="mt-4 max-w-sm">
-                        <FeedCard title="직접 만든 두부 간장조림" author="모카" tags={["한식", "쉬움"]} likes={24} comments={3} />
+                        <FeedCard title="직접 만든 두부 간장조림" time="20분" category="한식" difficulty="쉬움" author="모카" likes={24} />
                     </div>
                 </Section>
 
