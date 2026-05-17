@@ -5,6 +5,7 @@ import {
     ArrowRight,
     Bookmark,
     BookmarkFilled,
+    ChevronRight,
     Favorite,
     FavoriteFilled,
     Growth,
@@ -15,7 +16,7 @@ import {
     UserFollow,
     UserMultiple,
 } from "@carbon/icons-react";
-import { Avatar, Breadcrumb, Button, Card, Chip, EmptyState, Input } from "@/components/index.js";
+import { Avatar, Breadcrumb, Button, Card, Chip, EmptyState, Input, RecipeCard } from "@/components/index.js";
 
 const FEED_RECIPES = {
     "1": {
@@ -52,8 +53,8 @@ const FEED_RECIPES = {
             { id: 3, author: "밥한공기", body: "오늘 저녁으로 바로 해먹었습니다. 간단해서 좋아요.", time: "34분 전", likes: 1 },
         ],
         related: [
-            { id: "2", title: "두부 스테이크", time: "20분", category: "한식", difficulty: "쉬움" },
-            { id: "4", title: "계란말이", time: "20분", category: "한식", difficulty: "쉬움" },
+            { id: "2", title: "두부 스테이크", time: "20분", difficulty: "쉬움", servings: "1인분", description: "물기를 뺀 두부를 노릇하게 굽고 달큰한 간장 소스를 끼얹은 반찬" },
+            { id: "4", title: "계란말이", time: "20분", difficulty: "쉬움", servings: "2인분", description: "부드럽게 말아낸 계란에 남은 채소를 더한 기본 집밥 반찬" },
         ],
     },
     "2": {
@@ -88,8 +89,8 @@ const FEED_RECIPES = {
             { id: 2, author: "프라이팬요리", body: "전분 묻히니까 훨씬 맛있네요.", time: "3시간 전", likes: 1 },
         ],
         related: [
-            { id: "1", title: "된장찌개", time: "20분", category: "한식", difficulty: "쉬움" },
-            { id: "3", title: "김치볶음밥", time: "20분", category: "한식", difficulty: "쉬움" },
+            { id: "1", title: "된장찌개", time: "20분", difficulty: "쉬움", servings: "2인분", description: "자투리 채소와 두부로 빠르게 끓이는 깊은 맛의 집밥 찌개" },
+            { id: "3", title: "김치볶음밥", time: "20분", difficulty: "쉬움", servings: "1인분", description: "잘 익은 김치와 밥을 볶아 한 그릇으로 끝내는 간단 메뉴" },
         ],
     },
 };
@@ -361,34 +362,28 @@ export default function FeedDetail() {
                     </section>
 
                     <section className="flex flex-col gap-3">
-                        <SectionTitle>같은 작성자의 다른 레시피</SectionTitle>
+                        <SectionTitle
+                            action={(
+                                <Button variant="ghost" size="sm" onClick={() => navigate("/feed")}>
+                                    더보기
+                                    <ChevronRight size={14} />
+                                </Button>
+                            )}
+                        >
+                            같은 작성자의 다른 레시피
+                        </SectionTitle>
                         <div className="grid gap-2.5 rounded-card bg-gray-50 p-2.5 md:grid-cols-2 md:p-3">
                             {recipe.related.map((item) => (
-                                <Card
+                                <RecipeCard
                                     key={item.id}
+                                    title={item.title}
+                                    time={item.time}
+                                    difficulty={item.difficulty}
+                                    servings={item.servings}
+                                    description={item.description}
                                     onClick={() => navigate(`/feed/${item.id}`)}
-                                    className="gap-0 p-3 hover:bg-gray-50"
-                                >
-                                    <div className="grid grid-cols-[4rem_1fr] items-center gap-3">
-                                        <PhotoPlaceholder label="" tone="soft" className="size-16 rounded-btn" />
-                                        <div className="flex min-w-0 flex-col justify-center gap-1.5">
-                                            <p className="line-clamp-1 text-sm font-bold leading-snug text-gray-900 md:text-base">{item.title}</p>
-                                            <div className="flex flex-wrap gap-1">
-                                                <Chip variant="neutral" className="!px-2 !py-0.5 text-[0.6875rem]">
-                                                    {item.category}
-                                                </Chip>
-                                                <Chip variant="neutral" className="!px-2 !py-0.5 text-[0.6875rem]">
-                                                    <Time size={10} />
-                                                    {item.time}
-                                                </Chip>
-                                                <Chip variant="neutral" className="!px-2 !py-0.5 text-[0.6875rem]">
-                                                    <Growth size={10} />
-                                                    {item.difficulty}
-                                                </Chip>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Card>
+                                    className="min-w-0"
+                                />
                             ))}
                         </div>
                     </section>
