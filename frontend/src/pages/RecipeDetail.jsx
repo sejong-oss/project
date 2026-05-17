@@ -4,9 +4,9 @@ import {
     ArrowLeft,
     ArrowRight,
     Favorite,
+    Growth,
     PlayFilledAlt,
     Share,
-    SkillLevelBasic,
     Time,
     UserMultiple,
 } from "@carbon/icons-react";
@@ -289,7 +289,7 @@ export default function RecipeDetail() {
                         <SectionTitle>요리 정보</SectionTitle>
                         <div className="flex gap-2">
                             <RecipeStat label="시간" value={recipe.time} Icon={Time} />
-                            <RecipeStat label="난이도" value={recipe.difficulty} Icon={SkillLevelBasic} />
+                            <RecipeStat label="난이도" value={recipe.difficulty} Icon={Growth} />
                             <RecipeStat label="인분" value={recipe.servings} Icon={UserMultiple} />
                         </div>
                         <div className="flex flex-col gap-2">

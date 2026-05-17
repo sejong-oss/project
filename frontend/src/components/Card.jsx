@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Favorite, FavoriteFilled, SkillLevelBasic, Time, Category, UserMultiple } from "@carbon/icons-react";
+import { Favorite, FavoriteFilled, Growth, Time, Category, UserMultiple } from "@carbon/icons-react";
 import { Chip } from "@/components/Chip.jsx";
 import { Avatar } from "@/components/Avatar.jsx";
 
@@ -63,7 +63,7 @@ export function RecipeCard({
                     )}
                     {difficulty && (
                         <Chip variant="neutral">
-                            <SkillLevelBasic size={12} />
+                            <Growth size={12} />
                             {difficulty}
                         </Chip>
                     )}
@@ -108,7 +108,7 @@ export function FeedCard({ title, time, category, difficulty, image, author, lik
                 <div className="flex gap-1 flex-wrap">
                     {time && <Chip variant="neutral"><Time size={11} />{time}</Chip>}
                     {category && <Chip variant="neutral"><Category size={11} />{category}</Chip>}
-                    {difficulty && <Chip variant="neutral"><SkillLevelBasic size={11} />{difficulty}</Chip>}
+                    {difficulty && <Chip variant="neutral"><Growth size={11} />{difficulty}</Chip>}
                 </div>
                 <div className="flex items-center gap-1.5 mt-auto pt-1">
                     <Avatar name={author} size="sm" />
