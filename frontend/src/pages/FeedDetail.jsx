@@ -5,12 +5,12 @@ import {
     ArrowRight,
     Bookmark,
     BookmarkFilled,
-    Calendar,
     Favorite,
     FavoriteFilled,
+    Growth,
+    Restaurant,
     Send,
     Share,
-    SkillLevelBasic,
     Time,
     UserFollow,
     UserMultiple,
@@ -161,7 +161,7 @@ const StepRow = ({ index, children }) => (
 const PostHeader = ({ recipe, likeCount, bookmarkCount, liked, bookmarked, onLike, onBookmark }) => (
     <div className="flex flex-col gap-2.5 border-b border-gray-200 pb-4">
         <div className="flex items-center gap-2.5">
-            <Avatar name={recipe.author.name} size="lg" />
+            <Avatar name={recipe.author.name} size="md" />
             <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-extrabold text-gray-900 md:text-base">@{recipe.author.name}</p>
                 <p className="truncate text-xs font-medium text-gray-500">{recipe.createdAt}</p>
@@ -300,10 +300,17 @@ export default function FeedDetail() {
 
             <div className="relative z-10 -mt-8 grid gap-7 md:mt-0 md:grid-cols-[minmax(0,1fr)_21.25rem] md:items-start md:gap-10">
                 <article className="flex flex-col gap-6 rounded-t-[2rem] bg-white px-5 pb-6 pt-8 shadow-xl md:rounded-none md:px-0 md:pb-0 md:pt-0 md:shadow-none">
-                    <section className="flex flex-col gap-5">
-                        <h1 className="text-3xl font-extrabold leading-[1.2] tracking-tight text-gray-900 md:text-4xl lg:text-5xl">
-                            {recipe.title}
-                        </h1>
+                    <section className="flex flex-col gap-4">
+                        <div className="flex flex-col items-start gap-2">
+                            <Chip variant="neutral">
+                                <Restaurant size={12} />
+                                {recipe.category}
+                            </Chip>
+
+                            <h1 className="text-3xl font-extrabold leading-[1.2] tracking-tight text-gray-900 md:text-4xl lg:text-5xl">
+                                {recipe.title}
+                            </h1>
+                        </div>
 
                         <PostHeader
                             recipe={recipe}
@@ -320,9 +327,8 @@ export default function FeedDetail() {
                         </p>
 
                         <div className="flex flex-wrap gap-1.5 md:hidden">
-                            <StatChip Icon={Calendar}>{recipe.category}</StatChip>
                             <StatChip Icon={Time}>{recipe.time}</StatChip>
-                            <StatChip Icon={SkillLevelBasic}>{recipe.difficulty}</StatChip>
+                            <StatChip Icon={Growth}>{recipe.difficulty}</StatChip>
                             <StatChip Icon={UserMultiple}>{recipe.servings}</StatChip>
                         </div>
 
@@ -376,7 +382,7 @@ export default function FeedDetail() {
                                                     {item.time}
                                                 </Chip>
                                                 <Chip variant="neutral" className="!px-2 !py-0.5 text-[0.6875rem]">
-                                                    <SkillLevelBasic size={10} />
+                                                    <Growth size={10} />
                                                     {item.difficulty}
                                                 </Chip>
                                             </div>
@@ -415,10 +421,9 @@ export default function FeedDetail() {
                 <aside className="hidden md:sticky md:top-6 md:flex md:flex-col md:gap-4">
                     <Card className="gap-5 p-5 shadow-md">
                         <SectionTitle>요리 정보</SectionTitle>
-                        <div className="grid grid-cols-2 gap-2">
-                            <RecipeStat label="종류" value={recipe.category} Icon={Calendar} />
+                        <div className="flex gap-2">
                             <RecipeStat label="시간" value={recipe.time} Icon={Time} />
-                            <RecipeStat label="난이도" value={recipe.difficulty} Icon={SkillLevelBasic} />
+                            <RecipeStat label="난이도" value={recipe.difficulty} Icon={Growth} />
                             <RecipeStat label="인분" value={recipe.servings} Icon={UserMultiple} />
                         </div>
 
