@@ -236,7 +236,7 @@ export default function RecipeDetail() {
                 <article className="flex flex-col gap-6 rounded-t-[2rem] bg-white px-5 pb-28 pt-8 shadow-xl md:rounded-none md:px-0 md:pb-0 md:pt-0 md:shadow-none">
                     <section className="flex flex-col gap-4 md:gap-5">
                         <div className="flex flex-col gap-3">
-                            <h1 className="text-3xl font-extrabold leading-[1.18] tracking-tight text-gray-900 md:text-6xl">
+                            <h1 className="text-3xl font-extrabold leading-[1.2] tracking-tight text-gray-900 md:text-4xl lg:text-5xl">
                                 {recipe.title}
                             </h1>
                             <p className="max-w-3xl text-sm leading-relaxed text-gray-600 md:text-base">
