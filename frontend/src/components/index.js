@@ -4,6 +4,7 @@ export { Container } from "@/components/Container.jsx";
 export { Chip } from "@/components/Chip.jsx";
 export { Input, TagInput } from "@/components/Input.jsx";
 export { Card, ContentCard, RecipeCard, FeedCard } from "@/components/Card.jsx";
+export { PhotoPlaceholder } from "@/components/PhotoPlaceholder.jsx";
 export { Avatar } from "@/components/Avatar.jsx";
 export { Skeleton, CardSkeleton, FeedSkeleton } from "@/components/Skeleton.jsx";
 export { Toast } from "@/components/Toast.jsx";

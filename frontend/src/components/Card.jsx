@@ -2,16 +2,13 @@ import { useState } from "react";
 import { Favorite, FavoriteFilled, Growth, Time, Category, UserMultiple } from "@carbon/icons-react";
 import { Chip } from "@/components/Chip.jsx";
 import { Avatar } from "@/components/Avatar.jsx";
+import { PhotoPlaceholder } from "@/components/PhotoPlaceholder.jsx";
 
 const cardVariants = {
     default: "bg-white border-gray-200",
     hero: "bg-primary-100 border-transparent",
     muted: "bg-gray-50 border-transparent",
 };
-
-const PhotoPlaceholder = ({ className = "" }) => (
-    <div className={`bg-linear-to-br from-primary-100 to-primary-200 rounded-lg ${className}`} />
-);
 
 export function Card({ children, variant = "default", onClick, className = "" }) {
     return (
@@ -86,7 +83,7 @@ export function ContentCard({
             <div className="relative w-full h-28 lg:h-40">
                 {image
                     ? <img src={image} alt={title} className="w-full h-full object-cover" />
-                    : <PhotoPlaceholder className="w-full h-full rounded-none" />
+                    : <PhotoPlaceholder showLabel={false} className="w-full h-full rounded-none" />
                 }
                 {hasLikes && (
                     <button

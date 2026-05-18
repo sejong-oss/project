@@ -10,7 +10,7 @@ import {
     Time,
     UserMultiple,
 } from "@carbon/icons-react";
-import { Breadcrumb, Button, Card, EmptyState } from "@/components/index.js";
+import { Breadcrumb, Button, Card, EmptyState, PhotoPlaceholder } from "@/components/index.js";
 
 const RECIPES = {
     "dubu-jorim": {
@@ -60,20 +60,6 @@ const FALLBACK_RECIPES = {
         description: "매콤한 김치에 담백한 두부를 곁들이는 빠른 메뉴예요.",
     },
 };
-
-const PhotoPlaceholder = ({ label, tone = "deep", className = "" }) => (
-    <div
-        className={[
-            "flex items-center justify-center bg-linear-to-br text-[0.625rem] font-semibold uppercase tracking-widest",
-            tone === "deep"
-                ? "from-primary-300 to-primary-600 text-white"
-                : "from-primary-100 to-primary-200 text-primary-800",
-            className,
-        ].join(" ")}
-    >
-        <span className="opacity-65">{label}</span>
-    </div>
-);
 
 const SectionTitle = ({ children, meta, action }) => (
     <div className="flex items-center justify-between gap-3">
@@ -220,7 +206,7 @@ export default function RecipeDetail() {
             />
 
             <div className="relative md:hidden">
-                <PhotoPlaceholder label={recipe.title} className="h-60 w-full" />
+                <PhotoPlaceholder label={recipe.title} tone="deep" className="h-60 w-full" />
                 <Button
                     variant="outline"
                     size="sm"
@@ -252,6 +238,7 @@ export default function RecipeDetail() {
 
                         <PhotoPlaceholder
                             label={`${recipe.title} / main`}
+                            tone="deep"
                             className="hidden h-[23.75rem] w-full rounded-card md:flex"
                         />
                     </section>

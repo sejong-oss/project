@@ -16,7 +16,7 @@ import {
     UserFollow,
     UserMultiple,
 } from "@carbon/icons-react";
-import { Avatar, Breadcrumb, Button, Card, Chip, EmptyState, Input, RecipeCard } from "@/components/index.js";
+import { Avatar, Breadcrumb, Button, Card, Chip, EmptyState, Input, PhotoPlaceholder, RecipeCard } from "@/components/index.js";
 
 const FEED_RECIPES = {
     "1": {
@@ -103,20 +103,6 @@ const FALLBACK_RECIPES = {
     "7": { title: "오믈렛 브런치", author: "브런치킹", likes: 98, category: "양식", time: "12분" },
     "8": { title: "비빔국수", author: "쿨하게쿡", likes: 267, category: "한식", time: "10분" },
 };
-
-const PhotoPlaceholder = ({ label, tone = "deep", className = "" }) => (
-    <div
-        className={[
-            "flex items-center justify-center bg-linear-to-br text-[0.625rem] font-semibold uppercase tracking-widest",
-            tone === "deep"
-                ? "from-primary-300 to-primary-600 text-white"
-                : "from-primary-100 to-primary-200 text-primary-800",
-            className,
-        ].join(" ")}
-    >
-        <span className="opacity-65">{label}</span>
-    </div>
-);
 
 const SectionTitle = ({ children, meta, action }) => (
     <div className="flex items-center justify-between gap-3">
@@ -287,7 +273,7 @@ export default function FeedDetail() {
             />
 
             <div className="relative md:hidden">
-                <PhotoPlaceholder label={recipe.title} className="h-60 w-full" />
+                <PhotoPlaceholder label={recipe.title} tone="deep" className="h-60 w-full" />
                 <Button
                     variant="outline"
                     size="sm"
@@ -333,7 +319,7 @@ export default function FeedDetail() {
                             <StatChip Icon={UserMultiple}>{recipe.servings}</StatChip>
                         </div>
 
-                        <PhotoPlaceholder label={`${recipe.title} / main`} className="hidden h-[23.75rem] w-full rounded-card md:flex" />
+                        <PhotoPlaceholder label={`${recipe.title} / main`} tone="deep" className="hidden h-[23.75rem] w-full rounded-card md:flex" />
                     </section>
 
                     <section className="flex flex-col gap-3 md:hidden">
