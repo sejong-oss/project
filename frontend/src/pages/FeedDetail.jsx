@@ -137,11 +137,11 @@ const IngredientRow = ({ ingredient }) => (
 );
 
 const StepRow = ({ index, children }) => (
-    <div className="grid grid-cols-[2.25rem_1fr] gap-3 border-b border-gray-200 py-4 last:border-b-0">
-        <div className="flex size-9 items-center justify-center rounded-full bg-gray-900 text-sm font-extrabold text-white">
-            {index}
-        </div>
-        <p className="pt-1 text-sm leading-relaxed text-gray-700 md:text-base">{children}</p>
+    <div className="grid grid-cols-[3rem_minmax(0,1fr)] items-start gap-3 border-b border-gray-200 py-4 last:border-b-0">
+        <span className="inline-flex h-6 w-12 shrink-0 items-center justify-center rounded-btn bg-gray-900 text-xs font-extrabold text-white">
+            {String(index).padStart(2, "0")}
+        </span>
+        <p className="min-w-0 text-sm leading-6 text-gray-700 md:text-base">{children}</p>
     </div>
 );
 
