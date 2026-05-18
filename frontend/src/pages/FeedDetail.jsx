@@ -16,7 +16,19 @@ import {
     UserFollow,
     UserMultiple,
 } from "@carbon/icons-react";
-import { Avatar, Breadcrumb, Button, Card, Chip, EmptyState, Input, PhotoPlaceholder } from "@/components/index.js";
+import {
+    Avatar,
+    Breadcrumb,
+    Button,
+    Card,
+    Chip,
+    EmptyState,
+    Input,
+    PhotoPlaceholder,
+    RecipeSectionTitle,
+    RecipeStat,
+    RecipeStepRow,
+} from "@/components/index.js";
 
 const FEED_RECIPES = {
     "1": {
@@ -104,14 +116,6 @@ const FALLBACK_RECIPES = {
     "8": { title: "비빔국수", author: "쿨하게쿡", likes: 267, category: "한식", time: "10분" },
 };
 
-const SectionTitle = ({ children, meta, action }) => (
-    <div className="flex items-center justify-between gap-3">
-        <h2 className="text-xl font-extrabold tracking-tight text-gray-900 md:text-2xl">{children}</h2>
-        {meta && <span className="shrink-0 text-xs font-semibold uppercase tracking-wide text-gray-500">{meta}</span>}
-        {action}
-    </div>
-);
-
 const StatChip = ({ Icon, children }) => (
     <Chip variant="neutral">
         <Icon size={12} />
@@ -119,29 +123,10 @@ const StatChip = ({ Icon, children }) => (
     </Chip>
 );
 
-const RecipeStat = ({ label, value, Icon }) => (
-    <div className="flex-1 rounded-btn bg-gray-50 px-2.5 py-3 text-center">
-        <div className="flex items-center justify-center gap-1 text-xs font-semibold uppercase tracking-wide text-gray-500">
-            {Icon && <Icon size={13} />}
-            {label}
-        </div>
-        <div className="mt-1 text-base font-bold text-gray-900">{value}</div>
-    </div>
-);
-
 const IngredientRow = ({ ingredient }) => (
     <div className="flex items-center justify-between gap-3 rounded-btn border border-gray-200 bg-white px-3 py-2.5">
         <span className="min-w-0 truncate text-sm font-semibold text-gray-800">{ingredient.name}</span>
         <span className="shrink-0 text-xs font-bold text-gray-500">{ingredient.amount}</span>
-    </div>
-);
-
-const StepRow = ({ index, children }) => (
-    <div className="grid grid-cols-[3rem_minmax(0,1fr)] items-start gap-3 border-b border-gray-200 py-4 last:border-b-0">
-        <span className="inline-flex h-6 w-12 shrink-0 items-center justify-center rounded-btn bg-gray-900 text-xs font-extrabold text-white">
-            {String(index).padStart(2, "0")}
-        </span>
-        <p className="min-w-0 text-sm leading-6 text-gray-700 md:text-base">{children}</p>
     </div>
 );
 
@@ -368,7 +353,7 @@ export default function FeedDetail() {
                     </section>
 
                     <section className="flex flex-col gap-3 md:hidden">
-                        <SectionTitle meta={`${recipe.ingredients.length}개`}>재료</SectionTitle>
+                        <RecipeSectionTitle meta={`${recipe.ingredients.length}개`}>재료</RecipeSectionTitle>
                         <div className="flex flex-wrap gap-1.5">
                             {recipe.ingredients.map((ingredient) => (
                                 <Chip key={ingredient.name} variant="brand-soft">
@@ -384,16 +369,16 @@ export default function FeedDetail() {
                     </Card>
 
                     <section ref={stepsRef} className="scroll-mt-6 flex flex-col gap-2 md:scroll-mt-24">
-                        <SectionTitle meta={`${recipe.steps.length} STEPS`}>조리법</SectionTitle>
+                        <RecipeSectionTitle meta={`${recipe.steps.length} STEPS`}>조리법</RecipeSectionTitle>
                         <div className="flex flex-col">
                             {recipe.steps.map((step, index) => (
-                                <StepRow key={step} index={index + 1}>{step}</StepRow>
+                                <RecipeStepRow key={step} index={index + 1}>{step}</RecipeStepRow>
                             ))}
                         </div>
                     </section>
 
                     <section className="flex flex-col gap-3">
-                        <SectionTitle
+                        <RecipeSectionTitle
                             action={(
                                 <Button variant="ghost" size="sm" onClick={() => navigate("/feed")}>
                                     더보기
@@ -401,7 +386,7 @@ export default function FeedDetail() {
                             )}
                         >
                             같은 작성자의 다른 레시피
-                        </SectionTitle>
+                        </RecipeSectionTitle>
                         <div className="flex flex-col overflow-hidden rounded-card border border-gray-200 bg-white">
                             {recipe.related.map((item) => (
                                 <RelatedRecipeRow
@@ -440,7 +425,7 @@ export default function FeedDetail() {
 
                 <aside className="hidden md:sticky md:top-6 md:flex md:flex-col md:gap-4">
                     <Card className="gap-5 p-5 shadow-md">
-                        <SectionTitle>요리 정보</SectionTitle>
+                        <RecipeSectionTitle>요리 정보</RecipeSectionTitle>
                         <div className="flex gap-2">
                             <RecipeStat label="시간" value={recipe.time} Icon={Time} />
                             <RecipeStat label="난이도" value={recipe.difficulty} Icon={Growth} />
@@ -448,7 +433,7 @@ export default function FeedDetail() {
                         </div>
 
                         <div className="flex flex-col gap-2">
-                            <SectionTitle meta={`${recipe.ingredients.length}개`}>재료</SectionTitle>
+                            <RecipeSectionTitle meta={`${recipe.ingredients.length}개`}>재료</RecipeSectionTitle>
                             <div className="flex flex-col gap-1.5">
                                 {recipe.ingredients.map((ingredient) => (
                                     <IngredientRow key={ingredient.name} ingredient={ingredient} />

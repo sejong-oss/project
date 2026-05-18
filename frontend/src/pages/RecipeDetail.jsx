@@ -10,7 +10,16 @@ import {
     Time,
     UserMultiple,
 } from "@carbon/icons-react";
-import { Breadcrumb, Button, Card, EmptyState, PhotoPlaceholder } from "@/components/index.js";
+import {
+    Breadcrumb,
+    Button,
+    Card,
+    EmptyState,
+    PhotoPlaceholder,
+    RecipeSectionTitle,
+    RecipeStat,
+    RecipeStepRow,
+} from "@/components/index.js";
 
 const RECIPES = {
     "dubu-jorim": {
@@ -61,24 +70,6 @@ const FALLBACK_RECIPES = {
     },
 };
 
-const SectionTitle = ({ children, meta, action }) => (
-    <div className="flex items-center justify-between gap-3">
-        <h2 className="text-xl font-extrabold tracking-tight text-gray-900 md:text-2xl">{children}</h2>
-        {meta && <span className="shrink-0 text-xs font-semibold uppercase tracking-wide text-gray-500">{meta}</span>}
-        {action}
-    </div>
-);
-
-const RecipeStat = ({ label, value, Icon }) => (
-    <div className="flex-1 rounded-btn bg-gray-50 px-2.5 py-3 text-center">
-        <div className="flex items-center justify-center gap-1 text-xs font-semibold uppercase tracking-wide text-gray-500">
-            {Icon && <Icon size={13} />}
-            {label}
-        </div>
-        <div className="mt-1 text-base font-bold text-gray-900">{value}</div>
-    </div>
-);
-
 const ingredientStatusStyles = {
     owned: {
         row: "border-transparent bg-primary-100 text-primary-800",
@@ -119,15 +110,6 @@ function IngredientRow({ ingredient }) {
         </div>
     );
 }
-
-const StepRow = ({ index, children }) => (
-    <div className="grid grid-cols-[3rem_minmax(0,1fr)] items-start gap-3 border-b border-gray-200 py-4 last:border-b-0">
-        <span className="inline-flex h-6 w-12 shrink-0 items-center justify-center rounded-btn bg-gray-900 text-xs font-extrabold text-white">
-            {String(index).padStart(2, "0")}
-        </span>
-        <p className="min-w-0 text-sm leading-6 text-gray-700 md:text-base">{children}</p>
-    </div>
-);
 
 const VideoCard = ({ video }) => (
     <Card className="gap-0 overflow-hidden rounded-btn p-0">
@@ -244,7 +226,7 @@ export default function RecipeDetail() {
                     </section>
 
                     <section className="flex flex-col gap-3 md:hidden">
-                        <SectionTitle meta={ingredientsMeta}>재료</SectionTitle>
+                        <RecipeSectionTitle meta={ingredientsMeta}>재료</RecipeSectionTitle>
                         <div className="flex flex-col gap-1.5">
                             {recipe.ingredients.map((ingredient) => (
                                 <IngredientRow key={ingredient.name} ingredient={ingredient} />
@@ -253,16 +235,16 @@ export default function RecipeDetail() {
                     </section>
 
                     <section ref={stepsRef} className="scroll-mt-6 flex flex-col gap-2 md:scroll-mt-24">
-                        <SectionTitle meta={`${recipe.steps.length} STEPS`}>조리법</SectionTitle>
+                        <RecipeSectionTitle meta={`${recipe.steps.length} STEPS`}>조리법</RecipeSectionTitle>
                         <div className="flex flex-col">
                             {recipe.steps.map((step, index) => (
-                                <StepRow key={step} index={index + 1}>{step}</StepRow>
+                                <RecipeStepRow key={step} index={index + 1}>{step}</RecipeStepRow>
                             ))}
                         </div>
                     </section>
 
                     <section className="flex flex-col gap-3">
-                        <SectionTitle>관련 영상</SectionTitle>
+                        <RecipeSectionTitle>관련 영상</RecipeSectionTitle>
                         <div className="grid gap-3 md:grid-cols-3">
                             {recipe.videos.map((video) => (
                                 <VideoCard key={video.title} video={video} />
@@ -273,14 +255,14 @@ export default function RecipeDetail() {
 
                 <aside className="hidden md:sticky md:top-6 md:flex md:flex-col md:gap-4">
                     <Card className="gap-5 p-5 shadow-md">
-                        <SectionTitle>요리 정보</SectionTitle>
+                        <RecipeSectionTitle>요리 정보</RecipeSectionTitle>
                         <div className="flex gap-2">
                             <RecipeStat label="시간" value={recipe.time} Icon={Time} />
                             <RecipeStat label="난이도" value={recipe.difficulty} Icon={Growth} />
                             <RecipeStat label="인분" value={recipe.servings} Icon={UserMultiple} />
                         </div>
                         <div className="flex flex-col gap-2">
-                            <SectionTitle meta={ingredientsMeta}>재료</SectionTitle>
+                            <RecipeSectionTitle meta={ingredientsMeta}>재료</RecipeSectionTitle>
                             <div className="flex flex-col gap-1.5">
                                 {recipe.ingredients.map((ingredient) => (
                                     <IngredientRow key={ingredient.name} ingredient={ingredient} />

@@ -75,8 +75,9 @@ export function ContentCard({
         <div
             onClick={onClick}
             className={[
-                "border rounded-card overflow-hidden cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-md flex flex-col",
+                "border rounded-card overflow-hidden transition-all duration-200 flex flex-col",
                 cardVariants[variant],
+                onClick ? "cursor-pointer hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-md" : "",
                 className,
             ].join(" ")}
         >
@@ -87,6 +88,7 @@ export function ContentCard({
                 }
                 {hasLikes && (
                     <button
+                        type="button"
                         onClick={(e) => { e.stopPropagation(); setLiked((v) => !v); }}
                         className={["absolute top-2 right-2 flex items-center gap-1 px-2 py-1 rounded-full bg-white/75 backdrop-blur-sm text-xs transition-colors", liked ? "text-primary-500" : "text-gray-500"].join(" ")}
                     >
