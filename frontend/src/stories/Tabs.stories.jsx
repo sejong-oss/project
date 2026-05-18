@@ -39,8 +39,8 @@ export const WithContent = () => (
             </TabsContent>
             <TabsContent value="feed">
                 <div className="flex flex-col gap-3">
-                    <FeedCard title="직접 만든 두부 간장조림" ingredients="양파 · 두부 · 간장" tags={["한식", "쉬움"]} likes={24} comments={3} />
-                    <FeedCard title="냉장고 털이 된장찌개" ingredients="두부 · 대파 · 된장" tags={["한식"]} likes={8} comments={1} />
+                    <FeedCard title="직접 만든 두부 간장조림" time="20분" category="한식" difficulty="쉬움" author="모카" likes={24} />
+                    <FeedCard title="냉장고 털이 된장찌개" time="20분" category="한식" difficulty="쉬움" author="밥먹자" likes={8} />
                 </div>
             </TabsContent>
             <TabsContent value="saved">
@@ -66,7 +66,7 @@ export const LineVariant = () => (
             </TabsContent>
             <TabsContent value="feed">
                 <div className="flex flex-col gap-3">
-                    <FeedCard title="직접 만든 두부 간장조림" ingredients="양파 · 두부 · 간장" tags={["한식", "쉬움"]} likes={24} comments={3} />
+                    <FeedCard title="직접 만든 두부 간장조림" time="20분" category="한식" difficulty="쉬움" author="모카" likes={24} />
                 </div>
             </TabsContent>
             <TabsContent value="saved">

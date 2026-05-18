@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Favorite, Renew, Share, Star, Time, Video } from "@carbon/icons-react";
-import { Button, Card, Chip, EmptyState, RecipeCard } from "@/components/index.js";
+import { Button, Card, Chip, EmptyState, PhotoPlaceholder, RecipeCard } from "@/components/index.js";
 
 const INGREDIENTS = ["양파", "계란", "두부", "대파", "간장"];
 
@@ -23,20 +23,6 @@ const OTHERS = [
     { id: "8", title: "파전", time: "14분", difficulty: "보통", servings: "2인분", description: "대파를 넉넉히 넣어 바삭하게 부친 메뉴" },
     { id: "9", title: "두부조림", time: "16분", difficulty: "쉬움", servings: "2인분", description: "간장 양념을 졸여 밥반찬으로 좋은 조림" },
 ];
-
-const PhotoPlaceholder = ({ label, tone = "soft", className = "" }) => (
-    <div
-        className={[
-            "flex items-center justify-center bg-linear-to-br text-[0.5625rem] font-semibold uppercase tracking-widest",
-            tone === "deep"
-                ? "from-primary-300 to-primary-600 text-white"
-                : "from-primary-100 to-primary-200 text-primary-800",
-            className,
-        ].join(" ")}
-    >
-        {label && <span className="opacity-60">{label}</span>}
-    </div>
-);
 
 const hasResults = true; // TODO: 실제 추천 결과 상태로 교체
 
